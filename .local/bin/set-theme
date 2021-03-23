@@ -1,0 +1,12 @@
+#!/bin/bash
+
+t=`mktemp`
+echo "#!/bin/bash
+openbox --reconfigure
+pkill dunst
+dunst&!
+" > $t
+chmod u+x $t
+wal -i ~/.walz -a 90 --backend schemer2 -o $t $@
+xwallpaper --zoom `< ~/.cache/wal/wal`
+rm $t

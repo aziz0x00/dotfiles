@@ -1,0 +1,12 @@
+#
+# Aziz's ZSH
+#
+
+alias pacman='pacman --color=auto'
+alias ls='ls --color=auto -F'
+alias l='ls -lhA'
+alias yay='yay --color=auto'
+alias grep='grep --color=auto'
+
+# vim:syntax=zsh
+

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+cd
+(
+	find .config .local/bin dox media/vidz codz \! \( -path \*.git\* -o -path \*.cache\* \) -type f -printf '%C@ %p\0'
+	find . -maxdepth 1 -type f -printf '%C@ %p\0' | cut -zd/ -f2-
+) | sort -zr | cut -zd' ' -f2- | \
+rofi -sep '\0' -no-custom -theme .cache/wal/rofi -dmenu -i -l 10 -p "  "| \
+
+xargs -0 xdg-open

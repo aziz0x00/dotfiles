@@ -1,0 +1,44 @@
+#
+# Aziz's ZSH
+#
+
+_history_sessions() {
+	find /dev/null ~/.histfile ~/.histfiles/ ! \( -type d -o -path $HISTFILE \) \
+		| fzf --print-query | tr -d '\n' | read x
+
+	[ -z $x ] && return
+
+	grep -qE "^(/dev/null|$HOME/.histfile)" <<< $x || {
+		grep -q / <<< $x \
+		|| { HISTFILE=~/.histfiles/$x && false } \
+		&& _history_sessions && false # if statements lol
+	} && HISTFILE=$x
+}
+zle -N _history_sessions && bindkey '^v' _history_sessions
+
+precmd () {
+	print -Pn '\e]0;%~\a'
+} 
+
+preexec() {
+	echo -ne '\e[5 q'
+	print -Pn "\e]0;%~ | $1\a"
+}
+
+zle-keymap-select() {
+        ([ $1 = 'main' ] && echo -ne '\e[1 q') || echo -ne '\e[5 q'
+}
+zle -N zle-keyymap-select
+
+mkcd () {
+	mkdir -p "$1" && \
+	cd "$1" || return
+	pwd
+}
+
+function cdt () {
+	cd "$(mktemp -d)"
+	pwd
+}
+
+# vim:syntax=zsh

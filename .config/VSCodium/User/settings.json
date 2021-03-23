@@ -1,0 +1,5 @@
+{
+    "vscode-neovim.logOutputToConsole": true,
+    "vscode-neovim.neovimExecutablePaths.linux": "/bin/nvim",
+    "workbench.startupEditor": "newUntitledFile"
+}

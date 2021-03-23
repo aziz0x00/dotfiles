@@ -1,0 +1,9 @@
+#
+# Aziz's ZSH
+#
+
+bindkey -v
+bindkey '^R' history-incremental-search-backward
+autoload edit-command-line; zle -N edit-command-line; bindkey '^e' edit-command-line
+
+# vim:syntax=zsh
