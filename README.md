@@ -8,4 +8,4 @@ there are some cool projects hidden there.. ENJOY EXPLORING, i hope u learn somt
 
 ## Screenshot
 
-![](./screen.png)
+![](./screenshot.png)
