@@ -3,7 +3,7 @@
 window.handle.width: 0
 window.client.padding.width: 0
 window.client.padding.height: 0
-padding.width: 6
+padding.height: 6
 border.width: 1
 *.text.justify: center
 
@@ -21,8 +21,16 @@ window.active.border.color: {color2}
 window.inactive.title.bg: flat solid
 window.inactive.title.bg.color: {background}
 window.inactive.label.bg: parentrelative
+window.inactive.title.separator.color: {background}
 window.inactive.label.text.color: {color2}
-window.inactive.border.color: {background}
+window.inactive.border.color: {color8}
+
+!!Menu
+
+menu.items.bg: solid flat
+menu.items.bg.color: {background} 
+menu.items.text.color: {foreground}
+menu.items.active.text.color: {color4}
 
 !!OSD
 

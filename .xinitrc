@@ -1,11 +1,8 @@
 #!/bin/sh
 
 set-theme >& /dev/null &
-
 xset r rate 250 &
-
 picom &
-conky &
 
 while true
 do

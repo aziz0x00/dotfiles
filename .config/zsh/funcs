@@ -10,9 +10,9 @@ _history_sessions() {
 
 	grep -qE "^(/dev/null|$HOME/.histfile)" <<< $x || {
 		grep -q / <<< $x \
-		|| { HISTFILE=~/.histfiles/$x && false } \
+		|| { export HISTFILE=~/.histfiles/$x && false } \
 		&& _history_sessions && false # if statements lol
-	} && HISTFILE=$x
+	} && export HISTFILE=$x && unset x
 }
 zle -N _history_sessions && bindkey '^v' _history_sessions
 
@@ -26,9 +26,11 @@ preexec() {
 }
 
 zle-keymap-select() {
-        ([ $1 = 'main' ] && echo -ne '\e[1 q') || echo -ne '\e[5 q'
+        [ $1 = 'main' ] && echo -ne '\e[1 q' || echo -ne '\e[5 q'
 }
-zle -N zle-keyymap-select
+zle -N zle-keymap-select
+zle-line-init() { zle -K main; echo -ne '\e[5 q' }
+zle -N zle-line-init
 
 mkcd () {
 	mkdir -p "$1" && \
@@ -36,7 +38,7 @@ mkcd () {
 	pwd
 }
 
-function cdt () {
+cdt () {
 	cd "$(mktemp -d)"
 	pwd
 }

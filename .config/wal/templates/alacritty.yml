@@ -37,19 +37,19 @@ colors:
   # Search colors
   #
   # Colors used for the search bar and match highlighting.
-  #search:
+  search:
     # Allowed values are CellForeground and CellBackground, which reference the
     # affected cell, or hexadecimal colors like #ff00ff.
-    #matches:
-    #  foreground: '#000000'
-    #  background: '#ffffff'
-    #focused_match:
-    #  foreground: CellBackground
-    #  background: CellForeground
+    matches:
+      foreground: '{background}'
+      background: '{color4}'
+    focused_match:
+      foreground: '{background}'
+      background: '{color2}'
 
-    #bar:
-    #  background: '#c5c8c6'
-    #  foreground: '#1d1f21'
+    bar:
+      background: '{color4}'
+      foreground: '{background}'
 
   # Line indicator
   #
@@ -57,9 +57,9 @@ colors:
   # search and vi mode.
   #
   # By default, these will use the opposing primary color.
-  #line_indicator:
-  #  foreground: None
-  #  background: None
+  line_indicator:
+    foreground: '{background}'
+    background: '{color4}'
 
   # Selection colors
   #
