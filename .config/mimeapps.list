@@ -1,0 +1,24 @@
+[Default Applications]
+text/x-shellscript=text.desktop;
+text/plain=text.desktop;
+text/html=text.desktop;
+application/json=text.desktop;
+text/x-shellscript=text.desktop;
+text/x-php=text.desktop;
+text/x-java=text.desktop;
+text/x-script.python=text.desktop
+text/x-c++=text.desktop;
+text/x-c=text.desktop;
+text/x-perl=text.desktop;
+text/xml=text.desktop;
+text/x-makefile=text.desktop;
+image/png=img.desktop;
+image/jpeg=img.desktop;
+image/gif=img.desktop;
+application/pdf=document.desktop
+application/epub+zip=document.desktop
+inode/directory=file.desktop
+x-scheme-handler/tg=userapp-Telegram Desktop-ARAX00.desktop
+
+[Added Associations]
+x-scheme-handler/tg=userapp-Telegram Desktop-ARAX00.desktop;
