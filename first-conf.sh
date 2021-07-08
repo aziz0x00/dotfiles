@@ -1,5 +1,5 @@
-useradd aziz -Gwheel
-mkdir -p ~/.local/share/themes/Az1z/openbox-3 ~/.config/{dunst,zathurarc,conky} ~/.histfiles
+useradd aziz -Gwheel,video
+mkdir -p ~/.local/share/themes/Az1z/openbox-3 ~/.config/{dunst,zathura,conky} ~/.histfiles
 ln -s ~/.cache/wal/themerc ~/.local/share/themes/Az1z/openbox-3/
 ln -s ~/.cache/wal/dunstrc ~/.config/dunst/dunstrc
 ln -s ~/.cache/wal/zathurarc ~/.config/zathura/zathurarc
