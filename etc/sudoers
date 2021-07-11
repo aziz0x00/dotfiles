@@ -79,7 +79,7 @@
 root ALL=(ALL) ALL
 
 ## Uncomment to allow members of group wheel to execute any command
-%wheel ALL=(root) /bin/pacman, /bin/rfkill, /bin/tcpdump, /bin/mount, /bin/umount /dev/sd[b-c]*, /bin/dmesg, /bin/openvpn, (:wireshark) /bin/wireshark, (:docker) /bin/docker
+%wheel ALL=(root) /bin/pacman, /bin/rfkill, /bin/tcpdump, /bin/dmesg, /bin/openvpn, (:wireshark) /bin/wireshark, (:docker) /bin/docker
 
 ## Same thing without a password
 #%wheel ALL=(ALL) NOPASSWD: ALL
