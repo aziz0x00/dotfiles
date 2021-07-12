@@ -27,6 +27,8 @@ if has('syntax') && has('eval')
 endif
 se mouse=n
 let g:airline_theme='base16color'
+let g:colorizer_auto_color=1
 
 map \b :,!sed<Space>-z<Space>'s/\n$//'<Bar>base64<Return>
 map \B :,!base64<Space>-d<Return>
+map <Leader>cC :ColorHighlight<Return>
