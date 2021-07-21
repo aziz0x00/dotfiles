@@ -2,7 +2,7 @@
 
 cd
 {
-	find .config .local/bin dox media/vidz codz \! \( -path \*.git\* -o\
+	find .config .local/bin dox media/movies codz \! \( -path \*.git\* -o\
 	       	-path \*.cache\* \) -type f -printf '%C@ %p\0'
 	find . -maxdepth 1 -type f -printf '%C@ %p\0' | sed -z 's@./@@'
 } | sort -zr | cut -zd' ' -f2- | \
