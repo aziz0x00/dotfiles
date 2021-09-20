@@ -1,5 +1,5 @@
 
 [Desktop Entry]
 Type=Application
-Name=File Manager
+Name=Document Viewer
 Exec=/bin/zathura %u

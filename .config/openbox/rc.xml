@@ -1,4 +1,3 @@
-<?xml version="1.0"?>
 <openbox_config xmlns="http://openbox.org/3.4/rc" xmlns:xi="http://www.w3.org/2001/XInclude">
   <resistance>
     <strength>10</strength>
@@ -240,12 +239,12 @@
     </keybind>
     <keybind key="S-Print">
       <action name="Execute">
-        <command>sh -c "maim $(date +'%Y-%m-%d-%H:%M:%N.png')"</command>
+        <command>sh -c &quot;maim $(date +'%Y-%m-%d-%H:%M:%N.png')&quot;</command>
       </action>
     </keybind>
     <keybind key="Print">
       <action name="Execute">
-        <command>sh -c "maim -s $(date +'%Y-%m-%d-%H:%M:%N.png')"</command>
+        <command>sh -c &quot;maim -s $(date +'%Y-%m-%d-%H:%M:%N.png')&quot;</command>
       </action>
     </keybind>
     <keybind key="W-v">
@@ -255,12 +254,12 @@
     </keybind>
     <keybind key="XF86MonBrightnessDown">
       <action name="Execute">
-        <command>bash -c "xbacklight -dec 5; dunstify -t 400 -u low -r 1 Brightness $(xbacklight -get)%"</command>
+        <command>bash -c &quot;xbacklight -dec 5; dunstify -t 400 -u low -r 1 Brightness $(xbacklight -get)%&quot;</command>
       </action>
     </keybind>
     <keybind key="XF86MonBrightnessUp">
       <action name="Execute">
-        <command>bash -c "xbacklight -inc 5; dunstify -t 400 -u low -r 1 Brightness $(xbacklight -get)%"</command>
+        <command>bash -c &quot;xbacklight -inc 5; dunstify -t 400 -u low -r 1 Brightness $(xbacklight -get)%&quot;</command>
       </action>
     </keybind>
     <keybind key="XF86AudioMute">
@@ -270,12 +269,12 @@
     </keybind>
     <keybind key="XF86AudioLowerVolume">
       <action name="Execute">
-        <command>bash -c "amixer set Master 1-; dunstify -t 400 -u low -r 1 Volume $(amixer get Master|tail -1|awk -F'[][]' '{print $2}')"</command>
+        <command>bash -c &quot;amixer set Master 1-; dunstify -t 400 -u low -r 1 Volume $(amixer get Master|tail -1|awk -F'[][]' '{print $2}')&quot;</command>
       </action>
     </keybind>
     <keybind key="XF86AudioRaiseVolume">
       <action name="Execute">
-        <command>bash -c "amixer set Master 1+; dunstify -t 400 -u low -r 1 Volume $(amixer get Master|tail -1|awk -F'[][]' '{print $2}')"</command>
+        <command>bash -c &quot;amixer set Master 1+; dunstify -t 400 -u low -r 1 Volume $(amixer get Master|tail -1|awk -F'[][]' '{print $2}')&quot;</command>
       </action>
     </keybind>
     <keybind key="A-grave">
@@ -288,7 +287,7 @@
     </keybind>
     <keybind key="W-o">
       <action name="Execute">
-        <command>open</command>
+        <command>open-rofi</command>
       </action>
     </keybind>
     <keybind key="W-g">
@@ -311,7 +310,7 @@
     </keybind>
     <keybind key="W-e">
       <action name="Execute">
-        <command>alacritty -t 'ranger - File Explorer' -e ranger</command>
+        <command>kitty -T 'lf - File Explorer' -e lf</command>
       </action>
     </keybind>
     <keybind key="A-bracketleft">
@@ -325,7 +324,7 @@
     </keybind>
     <keybind key="W-Return">
       <action name="Execute">
-        <command>alacritty</command>
+        <command>kitty</command>
       </action>
     </keybind>
     <keybind key="W-5">
@@ -461,7 +460,7 @@
           <menu>title-bar</menu>
         </action>
       </mousebind>
-      <mousebind button="Left" action="DoubleClick"/>
+      <mousebind action="DoubleClick" button="Left"/>
     </context>
     <context name="Titlebar Top Right Bottom Left TLCorner TRCorner BRCorner BLCorner">
       <mousebind action="Press" button="Left">

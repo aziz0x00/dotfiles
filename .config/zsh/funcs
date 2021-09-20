@@ -3,7 +3,8 @@
 #
 
 _history_sessions() {
-	find /dev/null ~/.histfile ~/.histfiles/ ! \( -type d -o -path $HISTFILE \) \
+	find /dev/null ~/.histfile ~/.histfiles/ \
+		! \( -type d -o -path $HISTFILE \) \
 		| fzf --print-query | tr -d '\n' | read x
 
 	[ -z $x ] && return
@@ -17,10 +18,14 @@ _history_sessions() {
 zle -N _history_sessions && bindkey '^v' _history_sessions
 
 precmd () {
-	print -Pn '\e]0;%~\a'
+	__s=$?
+	[ -z $__saved_1 ] && print -Pn '\e]0;%~'\
+	|| print -Pn "\e]0;[E:$__s] %~ | $__saved_1\a"
+	unset __s
 } 
 
 preexec() {
+	__saved_1=$1
 	echo -ne '\e[5 q'
 	print -Pn "\e]0;%~ | $1\a"
 }

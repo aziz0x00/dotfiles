@@ -137,3 +137,5 @@ yay
 youtube-dl
 zathura
 zsh
+kitty
+lf

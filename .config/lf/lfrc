@@ -1,0 +1,5 @@
+set icons
+set previewer ~/.config/ranger/scope.sh # for now
+set ifs "\n"
+set hiddenfiles ".*:/home/lost+found:__pycache__"
+set period 1
