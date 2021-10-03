@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# $1: path to image file
+# $2: image width
+# $3: image height
+
+size=$(du -Hh -- "$1" | cut -f 1)
+geom="${2}x${3}"
+
+echo "[${size}, ${geom}] $1"

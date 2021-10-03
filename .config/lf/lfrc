@@ -1,5 +1,27 @@
+set previewer ~/.config/lf/previewer.sh
+set cleaner ~/.config/lf/clear_img.sh
+map i $LESSOPEN='| ~/.config/lf/previewer.sh %s 0 0 0 0' less -R $f
+
 set icons
-set previewer ~/.config/ranger/scope.sh # for now
 set ifs "\n"
 set hiddenfiles ".*:/home/lost+found:__pycache__"
 set period 1
+set info size
+set dircounts
+set promptfmt "\033[34;1m%d\033[0m\033[1m%f\033[0m"
+set mouse
+
+cmd open &nohup xdg-open "$f"
+map <m-up> up
+map <m-down> down
+map <enter> open
+map <backspace2> set hidden!
+map ~ :{{
+    set nopreview
+    set ratios 1
+    $~/.config/lf/clear_img.sh
+}}
+map ` :{{
+    set ratios 1:2:3
+    set preview
+}}

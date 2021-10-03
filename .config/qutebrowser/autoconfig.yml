@@ -10,8 +10,6 @@ settings:
     global: false
   content.geolocation:
     https://www.google.com: false
-  content.notifications:
-    https://ms-2.leefmylife.info: false
   content.proxy:
     global: system
   url.searchengines:

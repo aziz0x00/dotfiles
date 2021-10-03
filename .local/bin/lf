@@ -1,27 +1,27 @@
 #!/bin/bash
 
-LF_ICONS="di=📁:\
+export LF_ICONS="di=📁:\
 fi=📃:\
 tw=🤝:\
 ow=📂:\
-ln=⛓:\
+ln=🔗:\
 or=❌:\
 ex=🎯:\
-*.txt=✍:\
-*.mom=✍:\
-*.me=✍:\
-*.ms=✍:\
-*.png=🖼:\
-*.webp=🖼:\
-*.ico=🖼:\
+*.txt=📝:\
+*.mom=📝:\
+*.me=📝:\
+*.ms=📝:\
+*.png=🎨:\
+*.webp=🎨:\
+*.ico=🎨:\
 *.jpg=📸:\
 *.jpe=📸:\
 *.jpeg=📸:\
-*.gif=🖼:\
-*.svg=🗺:\
-*.tif=🖼:\
-*.tiff=🖼:\
-*.xcf=🖌:\
+*.gif=🎨:\
+*.svg=🎨:\
+*.tif=🎨:\
+*.tiff=🎨:\
+*.xcf=🎨:\
 *.html=🌎:\
 *.xml=📰:\
 *.gpg=🔒:\
@@ -38,7 +38,8 @@ ex=🎯:\
 *.ogg=🎵:\
 *.m4a=🎵:\
 *.flac=🎼:\
-*.wav=🎼:\
+*.wav=🎤:\
+*.ogg=🎤:\
 *.mkv=🎥:\
 *.mp4=🎥:\
 *.webm=🎥:\
@@ -61,6 +62,25 @@ ex=🎯:\
 *.img=📀:\
 *.part=💔:\
 *.torrent=🔽:\
-*.jar=♨:\
-*.java=♨:\
-" /bin/lf $@
+"
+set -e
+
+if [ -n "$DISPLAY" ]; then
+  export FIFO_UEBERZUG="/tmp/lf-ueberzug-$$"
+
+  cleanup() {
+    exec 3>&-
+    rm "$FIFO_UEBERZUG" -f
+  }
+
+  mkfifo "$FIFO_UEBERZUG"
+  ueberzug layer -s <"$FIFO_UEBERZUG" &
+  exec 3>"$FIFO_UEBERZUG"
+  trap cleanup EXIT
+
+  mkdir -p "$HOME/.cache/lf"
+
+  /bin/lf $@ 3>&-
+else
+  exec /bin/lf $@
+fi

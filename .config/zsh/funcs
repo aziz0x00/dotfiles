@@ -19,7 +19,7 @@ zle -N _history_sessions && bindkey '^v' _history_sessions
 
 precmd () {
 	__s=$?
-	[ -z $__saved_1 ] && print -Pn '\e]0;%~'\
+	[ -z $__saved_1 ] && print -Pn '\e]0;%~\a'\
 	|| print -Pn "\e]0;[E:$__s] %~ | $__saved_1\a"
 	unset __s
 } 

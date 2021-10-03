@@ -35,7 +35,6 @@ mdcat
 mpv
 neofetch
 neovim
-network-manager-applet
 networkmanager
 networkmanager-openvpn
 nmap
@@ -88,6 +87,7 @@ calcurse
 clinfo
 composer
 consolas-font
+cantarell-fonts
 curlie
 dnsmasq
 enjarify
@@ -102,13 +102,11 @@ fzf
 gawk
 gcc
 gettext
-gimp
 grc
 grep
 ipython
 obconf
 obkey
-otf-font-awesome
 otf-latinmodern-math
 p7zip
 pocl
@@ -131,11 +129,12 @@ virtualbox
 vscodium-bin
 w3m
 xautolock
-xorg-xmessage
 xorg-xrandr
 yay
 youtube-dl
 zathura
 zsh
 kitty
-lf
+aur/lf-bin
+siji
+aur/bibata-cursor-theme-bin

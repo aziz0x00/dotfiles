@@ -1,0 +1,19 @@
+#!/bin/zsh
+
+## bash keep complaining about null bytes almost everywhere, used zsh
+
+_saved=`xclip -o -se c`
+xclip -se c </dev/null
+
+while read file
+do
+	[[ ! $file = /* ]] && file=`pwd`/`sed 's@^\\./@@;s/\n$//' <<< $file`
+	case $1 in
+		y) echo -ne "`xclip -o -se c`$file$Z" | xclip -se c ;;
+		C-w) set-theme "$file" ;;
+	esac
+	Z=$'\0' # to not append a NUL to a single file
+done
+
+[ -z "`xclip -o -se c`" ] && echo -n $_saved | xclip -se c \
+	|| xclip -o -se c | xclip -se c

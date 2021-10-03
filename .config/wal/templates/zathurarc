@@ -1,5 +1,6 @@
-set statusbar-h-padding 0
-set statusbar-v-padding 0
+set font "Cantarell 11"
+set statusbar-h-padding 5
+set statusbar-v-padding 5
 set completion-bg "{background}"
 set completion-fg "{foreground}"
 set completion-group-bg "{background}"
@@ -9,15 +10,15 @@ set completion-highlight-fg "{background}"
 set recolor-lightcolor "rgba(0,0,0,0)"
 set recolor-darkcolor "{foreground}"
 set default-bg "{background.rgba}"
-set inputbar-bg "{background}"
-set inputbar-fg "{foreground}"
+set inputbar-bg "{foreground}"
+set inputbar-fg "{background}"
 set notification-bg "{background}"
 set notification-fg "{foreground}"
 set notification-error-bg "{color1}"
 set notification-error-fg "{foreground}"
 set notification-warning-bg "{color1}"
 set notification-warning-fg "{foreground}"
-set statusbar-bg "{background}"
+set statusbar-bg "{background.rgba}"
 set statusbar-fg "{foreground}"
 set index-bg "{background}"
 set index-fg "{foreground}"
