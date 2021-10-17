@@ -7,29 +7,29 @@ configuration {{
   primary: {color12};
   transparency: "real";
   background-color: transparent;
-  font: "Cantarell 13";
+  font: "Cantarell 11";
 }}
 
 window {{
   fullscreen: true;
   padding: calc( 100% - 600px ) calc( 100% - 1000px );
+  background-color: {background}90;
 }}
 
 prompt {{
-  font: "FontAwesome 13";
-  padding: 10 0 0 10;
+  font: "FontAwesome 11";
+  padding: 11 0 0 7;
   text-color: @primary;
 }}
 
 entry {{
-  padding: 10 0 10 3;
+  padding: 9 0 9 3;
   text-color: @fg;
 }}
 
 inputbar {{
   border: 1px;
   border-color: @primary;
-  background-color: {background.rgba};
   children: [prompt, entry];
   margin: 60 0;
 }}
@@ -40,16 +40,19 @@ listview {{
 }}
 
 element {{
-  margin: 1;
-  padding: 6;
-  text-color: @fg;
-  background-color: {background.rgba};
+  margin: 3;
+  text-color: {foreground}90;
+}}
+
+element-text {{
+  background-color: {background}80;
+  padding: 2;
 }}
 
 element-icon {{
   size: 20px;
 }}
 
-element selected {{
-  text-color: @primary;
+element-text selected {{
+  text-color: {foreground}cc;
 }}

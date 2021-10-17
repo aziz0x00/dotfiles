@@ -43,7 +43,7 @@ openvpn
 pandoc
 perl-image-exiftool
 php
-aur/picom-tryone-git
+aur/picom-jonaburg-git
 poppler-glib
 pypy3
 python-scapy
@@ -138,3 +138,5 @@ kitty
 aur/lf-bin
 siji
 aur/bibata-cursor-theme-bin
+xorg-xsetroot
+aur/ruby-fusuma

@@ -57,7 +57,7 @@ zstyle ':completion:*:man:*'      menu yes select
 zstyle ':completion:*' special-dirs ..
 zstyle ':completion:*' use-cache  yes
 zstyle ':completion:*:complete:*' cache-path .cache
-zstyle ':acceptline:*' rehash true
+zstyle ':completion:*' rehash true
 
 
 autoload insert-files && zle -N insert-files

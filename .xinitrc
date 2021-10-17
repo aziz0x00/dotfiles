@@ -2,6 +2,7 @@
 
 set-theme >& /dev/null &
 xset r rate 250 &
+xsetroot -cursor_name left_ptr
 xrdb -m .Xresources
 picom &
 
@@ -12,4 +13,4 @@ do
 done &
 
 
-exec openbox
+exec qtile start

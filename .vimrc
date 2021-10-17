@@ -26,9 +26,14 @@ if has('syntax') && has('eval')
   packadd! matchit
 endif
 se mouse=n
-let g:airline_theme='base16color'
+let g:airline_theme='base16_default'
 let g:colorizer_auto_color=1
 
 map \b :,!sed<Space>-z<Space>'s/\n$//'<Bar>base64<Return>
 map \B :,!base64<Space>-d<Return>
 map <Leader>cC :ColorHighlight<Return>
+
+" Cursor modes
+let &t_SI = "\<Esc>[5 q"
+let &t_SR = "\<Esc>[3 q"
+let &t_EI = "\<Esc>[1 q"

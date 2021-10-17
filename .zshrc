@@ -15,7 +15,7 @@ source ~/.config/zsh/binds
 autoload colors;colors
 [ -z $WINDOWID ] && c='>' || c='❯'
 PS1="%(?.%{$fg[green]%}.%{$fg[red]%}) $c %{$fg[white]%}"
-export FZF_DEFAULT_OPTS="--color=16 --prompt='$c ' --pointer='$c '"
+export FZF_DEFAULT_OPTS="--color=16,prompt:2,bg+:-1 --prompt='$c ' --pointer='$c '"
 unset colors c
 export FZF_CTRL_T_COMMAND='find ~/* * .* \( -type d -a \( -name .git -o -name .cache \) -prune \) -o -print'
 

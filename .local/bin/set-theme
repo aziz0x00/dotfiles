@@ -4,7 +4,7 @@ t=`mktemp`
 echo "#!/bin/bash
 pkill dunst;dunst&!
 openbox --reconfigure
-pkill conky;conky&! # conky what r u thinkin about?
+#pkill conky;conky&! # conky what r u thinkin about?
 " > $t
 chmod u+x $t
 
