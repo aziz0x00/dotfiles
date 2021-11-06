@@ -1,9 +1,10 @@
-#
-# Aziz's ZSH
-#
+# key bindings
 
 bindkey -v
 bindkey '^R' history-incremental-search-backward
 autoload edit-command-line; zle -N edit-command-line; bindkey '^e' edit-command-line
+
+## hist files switcher
+zle -N _history_sessions && bindkey '^v' _history_sessions
 
 # vim:syntax=zsh

@@ -318,6 +318,10 @@ handle_mime() {
             mediainfo "${FILE_PATH}" && exit 5
             exiftool "${FILE_PATH}" && exit 5
             exit 1;;
+	
+	application/json)
+            jq --color-output . "${FILE_PATH}" && exit 5
+	    ;;
     esac
 }
 

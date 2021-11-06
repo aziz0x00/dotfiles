@@ -1,8 +1,6 @@
-#
-# Aziz's ZSH
-#
+# aliases list
 
-alias pacman='pacman --color=auto'
+#alias pacman='pacman --color=auto' done on /etc/pacman.conf
 alias ls='grc ls --color=always -FC' # im not sad for u anyway, grc <3.
 alias l='ls -lhA'
 alias yay='yay --color=auto'

@@ -1,27 +1,25 @@
 # needs updates, learn the awesome zsh!!!
-setopt append_history
-setopt extended_history
-setopt histignorealldups
-setopt histignorespace
-setopt auto_cd
-setopt extended_glob
-setopt longlistjobs
-setopt notify
-setopt hash_list_all
-setopt completeinword
-setopt nohup
-setopt auto_pushd
-setopt nobeep
-setopt pushd_ignore_dups
-setopt noglobdots
-setopt noshwordsplit
-setopt unset
 
-export LESS=-R
-export LESS_TERMCAP_md=$'\E[01;34m'
-export LESS_TERMCAP_se=$'\E[0m'
-export LESS_TERMCAP_so=$'\E[01;44;30m'
+## options
+setopt append_history \
+       extended_history \
+       histignorealldups \
+       histignorespace \
+       auto_cd \
+       extended_glob \
+       longlistjobs \
+       notify \
+       hash_list_all \
+       completeinword \
+       nohup \
+       auto_pushd \
+       nobeep \
+       pushd_ignore_dups \
+       noglobdots \
+       noshwordsplit \
+       unset
 
+## competion
 autoload compinit; compinit
 zstyle ':completion:*:approximate:'    max-errors 'reply=( $((($#PREFIX+$#SUFFIX)/3 )) numeric )'
 zstyle ':completion:*:complete:-command-::commands' ignored-patterns '(aptitude-*|*\~)'
@@ -59,10 +57,17 @@ zstyle ':completion:*' use-cache  yes
 zstyle ':completion:*:complete:*' cache-path .cache
 zstyle ':completion:*' rehash true
 
+# vim keys in tab completion menu
+zmodload zsh/complist
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
 
 autoload insert-files && zle -N insert-files
 autoload insert-unicode-char && zle -N insert-unicode-char
-bindkey '\e[5~' history-search-backward
-bindkey '\e[6~' history-search-forward
+bindkey '\e[A' history-search-backward
+bindkey '\e[B' history-search-forward
+bindkey '^[[Z' autosuggest-accept
 
 # vim:syntax=zsh

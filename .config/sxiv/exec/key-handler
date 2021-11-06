@@ -13,7 +13,8 @@ do
 			echo -ne "`xclip -o -se c`$Z$file" | xclip -se c
 			Z=$'\0' # to not append a NUL to a single file
 			;;
-		C-w) set-theme "$file" ;;
+		w) xwallpaper --zoom "$file" ;;
+#		C-w) set-theme "$file" ;;
 	esac
 done
 

@@ -1,0 +1,27 @@
+# enviroment variables
+
+## hist
+HISTSIZE=1000 SAVEHIST=10000
+[ -z $HISTFILE ] && HISTFILE=~/.histfile 
+
+## prompt
+autoload colors;colors
+#[ ! -z $SSH_TYPE -o -z $WINDOWID ] && c='>' || c='❯'
+c='='
+PS1="%(?.%{$fg[green]%}.%{$fg[red]%}) $c %{$fg[white]%}"
+
+## fzf
+export FZF_DEFAULT_OPTS="--color=16,prompt:2,bg+:-1 --margin 0,1,0 --prompt='$c ' --pointer='$c '"
+unset colors c
+export FZF_CTRL_T_COMMAND='find ~/* * .* \( -type d -a \( -name .git -o -name .cache \) -prune \) -o -print'
+
+## less coloring
+export LESS=-R
+export LESS_TERMCAP_md=$'\E[01;34m'
+export LESS_TERMCAP_se=$'\E[0m'
+export LESS_TERMCAP_so=$'\E[01;44;30m'
+
+## bat
+export BAT_STYLE=numbers BAT_THEME=base16
+
+# vim:syntax=zsh

@@ -63,7 +63,7 @@ keys = [
 
     # mine
     Key([M], "b", lazy.spawn('qutebrowser')),
-    Key([M], "d", lazy.spawn('stardict')),
+    Key([M], "d", lazy.spawn('qstardict')),
     Key([M], "o", lazy.spawn('open-rofi')),
     Key([M], "p", lazy.spawn('alacritty -t htop -e htop')),
     Key([M], "e", lazy.spawn('alacritty -t "lf - file manager" -e lf')),
@@ -82,10 +82,14 @@ keys = [
     # screenshot
     Key([], 'Print', lazy.spawn("bash -c 'maim -s $(date +\"%Y-%m-%d-%H:%M:%N.png\")'")),
     Key(['shift'], 'Print', lazy.spawn("bash -c 'maim $(date +\"%Y-%m-%d-%H:%M:%N.png\")'")),
+
+    Key(['control'], 'space', lazy.spawn('dunstctl close')),
+    Key(['control', 'shift'], 'space', lazy.spawn('dunstctl close-all')),
+    Key(['control'], 'grave', lazy.spawn('dunstctl history-pop')),
 ]
 
 groups = [Group(name=str(i+1), label=l) for i, l in \
-        enumerate(('general', 'code', 'web'))]
+        enumerate(('general', 'code', 'web', 'etc'))]
 
 for i in groups:
     keys.extend([
@@ -130,30 +134,32 @@ screens = [
     Screen(
         top=bar.Bar(
             [
-                widget.CurrentLayoutIcon(scale=.6),
+                widget.CurrentLayoutIcon(scale=.6, background=color[4]+'cc'),
                 widget.GroupBox(highlight_method='line', disable_drag=True,\
-                        highlight_color=[color[0]+'00', color[8]],\
-                        this_current_screen_border=color[9],\
-                        active=color[7], inactive=color[8]),
-                widget.WindowName(foreground=color[7]),
+                        highlight_color=[color[4]+'20']*2,\
+                        this_current_screen_border=color[4]+'80',\
+                        active=color[15], inactive=color[8], margin_x=0),
+                widget.WindowName(foreground='#ffffff',\
+                        background=color[4]+'cc',\
+                        fontsize=13, padding=4),
                 widget.Wlan(interface='wlp3s0', disconnected_message='',\
                         foreground=color[7]),
                 widget.Net(foreground=color[7]+'90'),
                 widget.NetGraph(border_width=0, line_width=1),
-                widget.Sep(foreground=color[8]),
+                widget.Sep(foreground=color[4]+'cc', size_percent=100),
                 widget.Battery(format=' {percent:2.0%}'),
-                widget.Sep(foreground=color[8]),
+                widget.Sep(foreground=color[4]+'cc', size_percent=100),
                 widget.Clock(format=' %a, %b %d - %R '),
             ],
             26,
-            background=color[0]+'90'
+            background=color[0]+'cc'
         ),
     ),
 ]
 
 # Drag floating layouts.
 mouse = [
-    Drag([A], "Button1", lazy.window.set_position_floating(),
+    Drag([M], "Button1", lazy.window.set_position_floating(),
          start=lazy.window.get_position()),
     Drag([M], "Button3", lazy.window.set_size_floating(),
          start=lazy.window.get_size()),
@@ -168,7 +174,7 @@ cursor_warp = False
 floating_layout = layout.Floating(float_rules=[
     # Run the utility of `xprop` to see the wm class and name of an X client.
     *layout.Floating.default_float_rules,
-    Match(wm_class='stardict'),  # gitk
+    Match(wm_class='qstardict'),  # gitk
     Match(wm_class='makebranch'),  # gitk
     Match(wm_class='maketag'),  # gitk
     Match(wm_class='ssh-askpass'),  # ssh-askpass

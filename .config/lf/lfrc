@@ -10,8 +10,12 @@ set info size
 set dircounts
 set promptfmt "\033[34;1m%d\033[0m\033[1m%f\033[0m"
 set mouse
+#cmd on-cd &{{
+#    echo -ne "\e]0;lf : $(sed 's@^/home/'$USER'@~@' <<< $PWD)\a" > /dev/tty
+#}}
+#on-cd
 
-cmd open &nohup xdg-open "$f"
+cmd open $rifle "$f"
 map <m-up> up
 map <m-down> down
 map <enter> open

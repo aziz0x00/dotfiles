@@ -53,7 +53,7 @@ radare2
 ranger
 rofi
 socat
-stardict
+qstardict
 strace
 sxiv
 tcpdump
@@ -140,3 +140,5 @@ siji
 aur/bibata-cursor-theme-bin
 xorg-xsetroot
 aur/ruby-fusuma
+aur/ruby-fusuma-appmatcher
+atool

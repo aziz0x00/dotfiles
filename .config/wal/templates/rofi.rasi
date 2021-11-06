@@ -41,11 +41,11 @@ listview {{
 
 element {{
   margin: 3;
-  text-color: {foreground}90;
 }}
 
 element-text {{
   background-color: {background}80;
+  text-color: {foreground}90;
   padding: 2;
 }}
 
@@ -54,5 +54,5 @@ element-icon {{
 }}
 
 element-text selected {{
-  text-color: {foreground}cc;
+  text-color: {foreground}d8;
 }}

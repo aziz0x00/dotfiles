@@ -3,12 +3,15 @@
 t=`mktemp`
 echo "#!/bin/bash
 pkill dunst;dunst&!
-openbox --reconfigure
+#openbox --reconfigure
 #pkill conky;conky&! # conky what r u thinkin about?
 " > $t
 chmod u+x $t
 
-wal -s -i "${1:-`pwd`/.walz}" -a 90 --backend schemer2 -o $t
-xwallpaper --zoom "`< ~/.cache/wal/wal`"
+#wal -s -i "${1:-`pwd`/.walz}" -a 90 --backend schemer2 -o $t
+#xwallpaper --zoom "`< ~/.cache/wal/wal`"
+
+wal --theme random -o $t
+xwallpaper --zoom "${1:-`find .walz -type f|shuf -n1`}"
 
 rm $t

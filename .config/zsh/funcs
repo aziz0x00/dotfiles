@@ -1,7 +1,6 @@
-#
-# Aziz's ZSH
-#
+# functions for conf and comfort
 
+## cli workspacing
 _history_sessions() {
 	find /dev/null ~/.histfile ~/.histfiles/ \
 		! \( -type d -o -path $HISTFILE \) \
@@ -15,20 +14,20 @@ _history_sessions() {
 		&& _history_sessions && false # if statements lol
 	} && export HISTFILE=$x && unset x
 }
-zle -N _history_sessions && bindkey '^v' _history_sessions
 
+## window titling
 precmd () {
 	__s=$?
 	[ -z $__saved_1 ] && print -Pn '\e]0;%~\a'\
-	|| print -Pn "\e]0;[E:$__s] %~ | $__saved_1\a"
+	|| print -Pn "\e]0;($__s %~) - $__saved_1\a"
 	unset __s
 } 
-
 preexec() {
 	__saved_1=$1
-	print -Pn "\e]0;%~ | $1\a"
+	print -Pn "\e]0;(%~) - $1\a"
 }
 
+## cursor setup
 zle-keymap-select() {
         [ $1 = 'main' ] && echo -ne '\e[1 q' || echo -ne '\e[5 q'
 }
@@ -36,6 +35,7 @@ zle -N zle-keymap-select
 zle-line-init() { zle -K main; echo -ne '\e[5 q' }
 zle -N zle-line-init
 
+## useful funtions
 mkcd () {
 	mkdir -p "$1" && \
 	cd "$1" || return
