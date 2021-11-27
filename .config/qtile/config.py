@@ -85,7 +85,7 @@ keys = [
 
     Key(['control'], 'space', lazy.spawn('dunstctl close')),
     Key(['control', 'shift'], 'space', lazy.spawn('dunstctl close-all')),
-    Key(['control'], 'grave', lazy.spawn('dunstctl history-pop')),
+#    Key(['control'], 'grave', lazy.spawn('dunstctl history-pop')),
 ]
 
 groups = [Group(name=str(i+1), label=l) for i, l in \
@@ -108,19 +108,8 @@ for i in groups:
 
 layouts = [
     layout.Columns(border_focus=color[2], border_normal=color[8],\
-            border_on_single=True, border_width=1, margin=10),
+            border_on_single=True, border_width=1, margin=6),
     layout.Max(),
-    # Try more layouts by unleashing below layouts.
-    # layout.Stack(num_stacks=2),
-    # layout.Bsp(),
-    # layout.Matrix(),
-    # layout.MonadTall(),
-    # layout.MonadWide(),
-    # layout.RatioTile(),
-    # layout.Tile(),
-    # layout.TreeTab(),
-    # layout.VerticalTile(),
-    # layout.Zoomy(),
 ]
 
 widget_defaults = dict(
@@ -145,7 +134,8 @@ screens = [
                 widget.Wlan(interface='wlp3s0', disconnected_message='',\
                         foreground=color[7]),
                 widget.Net(foreground=color[7]+'90'),
-                widget.NetGraph(border_width=0, line_width=1),
+                widget.NetGraph(border_width=0, line_width=1,\
+                    graph_color=color[4]+'cc', fill_color=color[4]+'70'),
                 widget.Sep(foreground=color[4]+'cc', size_percent=100),
                 widget.Battery(format=' {percent:2.0%}'),
                 widget.Sep(foreground=color[4]+'cc', size_percent=100),

@@ -13,7 +13,7 @@ configuration {{
 window {{
   fullscreen: true;
   padding: calc( 100% - 600px ) calc( 100% - 1000px );
-  background-color: {background}90;
+  background-color: {background}c0;
 }}
 
 prompt {{

@@ -67,11 +67,12 @@ hi Underlined ctermfg=01
 hi Visual ctermbg=238
 hi VisualNOS ctermfg=01
 hi WarningMsg ctermfg=01
-hi WildMenu ctermfg=00
+hi WildMenu ctermfg=00 ctermbg=08
 hi Title ctermfg=04 cterm=none
 hi Conceal ctermfg=04 ctermbg=00
 hi Cursor ctermfg=00 ctermbg=07
 hi CursorLineNr ctermfg=245
+"hi CursorLine cterm=none ctermbg=8
 hi NonText ctermfg=08
 hi LineNr ctermfg=08
 hi SignColumn ctermfg=08 ctermbg=00
