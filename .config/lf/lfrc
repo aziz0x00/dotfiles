@@ -4,7 +4,7 @@ map i $LESSOPEN='| ~/.config/lf/previewer.sh %s 0 0 0 0' less -R $f
 
 set icons
 set ifs "\n"
-set hiddenfiles ".*:/home/lost+found:__pycache__"
+set hiddenfiles "~/.*:/home/lost+found:__pycache__"
 set period 1
 set info size
 set dircounts

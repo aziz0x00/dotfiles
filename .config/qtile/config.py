@@ -4,8 +4,10 @@ from libqtile import bar, layout, widget
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 
-from os import getenv
+from os import getenv, system
+import datetime
 
+system('xsetroot -cursor_name left_ptr')
 color = [] # 0:bg, 7:fg
 with open(getenv('HOME')+'/.cache/wal/colors') as f:
     for c in f.read().splitlines():
@@ -52,6 +54,7 @@ keys = [
     Key([M], "BackSpace", lazy.layout.toggle_split(),
         desc="Toggle between split and unsplit sides of stack"),
     Key([M], "Return", lazy.spawn('alacritty'), desc="Launch terminal"),
+    Key([M, "shift"], "Return", lazy.spawn('kitty'), desc="Launch terminal"),
 
     # Toggle between different layouts as defined below
     Key([M], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
@@ -71,6 +74,7 @@ keys = [
 
     Key([A], 'bracketright', lazy.screen.next_group()),
     Key([A], 'bracketleft', lazy.screen.prev_group()),
+    Key([A], 'backslash', lazy.screen.toggle_group()),
     # volume & brightness
     Key([], 'XF86AudioLowerVolume', lazy.spawn("bash -c \"amixer set Master 1%-; dunstify -t 400 -u low -r 1 Volume $(amixer get Master|tail -1|awk -F'[][]' '{print $2}')\"")),
     Key([], 'XF86AudioRaiseVolume', lazy.spawn("bash -c \"amixer set Master 1%+; dunstify -t 400 -u low -r 1 Volume $(amixer get Master|tail -1|awk -F'[][]' '{print $2}')\"")),
@@ -84,8 +88,10 @@ keys = [
     Key(['shift'], 'Print', lazy.spawn("bash -c 'maim $(date +\"%Y-%m-%d-%H:%M:%N.png\")'")),
 
     Key(['control'], 'space', lazy.spawn('dunstctl close')),
-    Key(['control', 'shift'], 'space', lazy.spawn('dunstctl close-all')),
+#    Key(['control', 'shift'], 'space', lazy.spawn('dunstctl close-all')),
 #    Key(['control'], 'grave', lazy.spawn('dunstctl history-pop')),
+
+#    Key([], 'XF86UWB', lazy.spawn('sudo rfkill toggle wlan')),
 ]
 
 groups = [Group(name=str(i+1), label=l) for i, l in \
@@ -108,7 +114,8 @@ for i in groups:
 
 layouts = [
     layout.Columns(border_focus=color[2], border_normal=color[8],\
-            border_on_single=True, border_width=1, margin=6),
+            border_on_single=True, border_width=1, margin=6,\
+            margin_on_single=[30, 100, 30, 100]),
     layout.Max(),
 ]
 
@@ -119,6 +126,7 @@ widget_defaults = dict(
 )
 extension_defaults = widget_defaults.copy()
 
+t = datetime.datetime.today()
 screens = [
     Screen(
         top=bar.Bar(
@@ -137,6 +145,11 @@ screens = [
                 widget.NetGraph(border_width=0, line_width=1,\
                     graph_color=color[4]+'cc', fill_color=color[4]+'70'),
                 widget.Sep(foreground=color[4]+'cc', size_percent=100),
+                widget.Countdown(format='{H}:{M}:{S}', date=datetime.datetime(
+                    t.year, t.month, t.day, 22)),
+                widget.Sep(foreground=color[4]+'cc', size_percent=100),
+                widget.Pomodoro(color_inactive=color[7]+'90'),
+                widget.Sep(foreground=color[4]+'cc', size_percent=100),
                 widget.Battery(format=' {percent:2.0%}'),
                 widget.Sep(foreground=color[4]+'cc', size_percent=100),
                 widget.Clock(format=' %a, %b %d - %R '),
@@ -146,6 +159,7 @@ screens = [
         ),
     ),
 ]
+del t
 
 # Drag floating layouts.
 mouse = [

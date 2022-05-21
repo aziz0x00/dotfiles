@@ -142,3 +142,5 @@ xorg-xsetroot
 aur/ruby-fusuma
 aur/ruby-fusuma-appmatcher
 atool
+ttf-nerd-fonts-symbols-mono
+python-dbus-next

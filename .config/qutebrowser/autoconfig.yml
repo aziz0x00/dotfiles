@@ -6,12 +6,23 @@
 
 config_version: 2
 settings:
+  bindings.commands:
+    global:
+      normal:
+        <Ctrl+q>: null
+        d: null
   colors.webpage.darkmode.enabled:
     global: false
   content.geolocation:
     https://www.google.com: false
   content.proxy:
     global: system
+  fonts.default_family:
+    global: null
+  fonts.default_size:
+    global: 9pt
+  tabs.position:
+    global: top
   url.searchengines:
     global:
       DEFAULT: https://www.google.com/search?q={0}&oq={0}

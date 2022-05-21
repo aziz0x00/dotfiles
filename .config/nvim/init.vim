@@ -1,10 +1,14 @@
 let mapleader=","
 autocmd BufReadPost * normal g`"
+set nocompatible
 set title
 set go=a
 set mouse=a
 set hlsearch
 set clipboard+=unnamedplus
+set tabstop=4
+set shiftwidth=4
+set expandtab
 set undofile
 set number relativenumber
 " Disables automatic commenting on newline:
@@ -22,6 +26,7 @@ map <C-k> <C-w>k
 map <C-l> <C-w>l
 
 "let g:colorizer_auto_color=1
+"set cursorline
 set noshowmode
 set noruler
 set laststatus=0

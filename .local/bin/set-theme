@@ -1,8 +1,12 @@
 #!/bin/bash
 
+echo 'disabled'
+exit
+
 t=`mktemp`
 echo "#!/bin/bash
 pkill dunst;dunst&!
+xrdb -m ~/.cache/wal/.cache/wal/Xresources
 #openbox --reconfigure
 #pkill conky;conky&! # conky what r u thinkin about?
 " > $t
