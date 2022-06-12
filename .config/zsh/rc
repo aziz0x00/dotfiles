@@ -70,4 +70,4 @@ bindkey '\e[A' history-search-backward
 bindkey '\e[B' history-search-forward
 bindkey '^[[Z' autosuggest-accept
 
-# vim:syntax=zsh
+# vi:filetype=zsh

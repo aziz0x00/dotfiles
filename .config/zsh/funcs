@@ -21,7 +21,7 @@ precmd () {
 	[ -z $__saved_1 ] && print -Pn '\e]0;%~\a'\
 	|| print -Pn "\e]0;($__s %~) - $__saved_1\a"
 	unset __s
-} 
+}
 preexec() {
 	__saved_1=$1
 	print -Pn "\e]0;(%~) - $1\a"
@@ -47,4 +47,4 @@ cdt () {
 	pwd
 }
 
-# vim:syntax=zsh
+# vi:filetype=zsh

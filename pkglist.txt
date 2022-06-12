@@ -1,6 +1,5 @@
 acpi
 acpilight
-aircrack-ng
 alsa-utils
 arch-wiki-docs
 base
@@ -105,8 +104,6 @@ gettext
 grc
 grep
 ipython
-obconf
-obkey
 otf-latinmodern-math
 p7zip
 pocl
@@ -119,12 +116,10 @@ texinfo
 tk
 toilet
 ttf-font-awesome
-vim-airline
 vim-easymotion
 vim-jad
 vim-nerdcommenter
 vim-nerdtree
-vim-supertab
 virtualbox
 vscodium-bin
 w3m
@@ -136,11 +131,10 @@ zathura
 zsh
 kitty
 aur/lf-bin
-siji
-aur/bibata-cursor-theme-bin
 xorg-xsetroot
-aur/ruby-fusuma
-aur/ruby-fusuma-appmatcher
 atool
 ttf-nerd-fonts-symbols-mono
 python-dbus-next
+python-pylint
+flake8
+sagemath

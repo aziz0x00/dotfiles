@@ -75,7 +75,7 @@ hi CursorLineNr ctermfg=245
 "hi CursorLine cterm=none ctermbg=8
 hi NonText ctermfg=08
 hi LineNr ctermfg=08
-hi SignColumn ctermfg=08 ctermbg=00
+hi clear SignColumn
 hi StatusLine ctermfg=00 ctermbg=07 cterm=none
 hi StatusLineNC ctermfg=08 ctermbg=00 cterm=none
 hi VertSplit ctermfg=14 ctermbg=none cterm=none
@@ -248,9 +248,9 @@ hi SignifySignChange ctermfg=04 ctermbg=00
 hi SignifySignDelete ctermfg=01 ctermbg=00
 
 " Spelling highlighting
-hi SpellBad cterm=undercurl
+hi SpellBad cterm=undercurl ctermbg=9
 hi SpellLocal cterm=undercurl
-hi SpellCap cterm=undercurl
+hi SpellCap cterm=undercurl ctermbg=12
 hi SpellRare cterm=undercurl
 
 " Startify highlighting

@@ -24,4 +24,4 @@ export LESS_TERMCAP_so=$'\E[01;44;30m'
 ## bat
 export BAT_STYLE=numbers BAT_THEME=base16
 
-# vim:syntax=zsh
+# vi:filetype=zsh
