@@ -9,6 +9,6 @@ t=`mktemp`
 xclip -o -sel $1 > $t
 
 alacritty -t "Clipboard Editor ($1)"\
-	-e vi $t -c ":au BufWritePost $t !xclip $t -sel $1"
-# having unsolved issue with :wq
+	-e vi $t -c ":se noeol | :au BufWritePost $t !xclip $t -sel $1"
+# having unsolved issue with noeol, putting it there make it work..
 rm $t

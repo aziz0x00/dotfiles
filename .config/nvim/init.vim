@@ -22,6 +22,7 @@ set shiftwidth=4
 set expandtab
 set undofile
 set number relativenumber
+set noeol nofixeol " noeol is pain :(
 " Disables automatic commenting on newline:
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 " Perform dot commands over visual blocks
@@ -45,7 +46,7 @@ syntax on
 colorscheme my_base16
 
 " ALE
-let b:ale_linters = ['flake8', 'pylint']
+let b:ale_linters = ['pylint']
 let b:ale_fixers = ['autopep8', 'yapf']
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'

@@ -248,9 +248,9 @@ hi SignifySignChange ctermfg=04 ctermbg=00
 hi SignifySignDelete ctermfg=01 ctermbg=00
 
 " Spelling highlighting
-hi SpellBad cterm=undercurl ctermbg=9
+hi SpellBad cterm=undercurl ctermfg=none ctermbg=none
 hi SpellLocal cterm=undercurl
-hi SpellCap cterm=undercurl ctermbg=12
+hi SpellCap cterm=undercurl ctermfg=none ctermbg=none
 hi SpellRare cterm=undercurl
 
 " Startify highlighting

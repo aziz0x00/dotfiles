@@ -5,7 +5,7 @@ from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 
 from os import getenv, system
-import datetime
+import datetime, re
 
 system('xsetroot -cursor_name left_ptr')
 color = [] # 0:bg, 7:fg
@@ -71,6 +71,7 @@ keys = [
     Key([M], "p", lazy.spawn('alacritty -t htop -e htop')),
     Key([M], "e", lazy.spawn('alacritty -t "lf - file manager" -e lf')),
     Key([M], "g", lazy.spawn('rofi -show window -show-icons -theme ~/.cache/wal/rofi')),
+    Key([M, 'shift'], "c", lazy.spawn('edit-clip p')),
 
     Key([A], 'bracketright', lazy.screen.next_group()),
     Key([A], 'bracketleft', lazy.screen.prev_group()),
@@ -146,7 +147,7 @@ screens = [
                     graph_color=color[4]+'cc', fill_color=color[4]+'70'),
                 widget.Sep(foreground=color[4]+'cc', size_percent=100),
                 widget.Countdown(format='{H}:{M}:{S}', date=datetime.datetime(
-                    t.year, t.month, t.day, 22)),
+                    t.year, t.month, t.day, 21, 30)),
                 widget.Sep(foreground=color[4]+'cc', size_percent=100),
                 widget.Pomodoro(color_inactive=color[7]+'90'),
                 widget.Sep(foreground=color[4]+'cc', size_percent=100),
@@ -179,6 +180,7 @@ floating_layout = layout.Floating(float_rules=[
     # Run the utility of `xprop` to see the wm class and name of an X client.
     *layout.Floating.default_float_rules,
     Match(wm_class='qstardict'),  # gitk
+    Match(wm_class='Alacritty', title=re.compile('^Clipboard Editor')),
     Match(wm_class='makebranch'),  # gitk
     Match(wm_class='maketag'),  # gitk
     Match(wm_class='ssh-askpass'),  # ssh-askpass
