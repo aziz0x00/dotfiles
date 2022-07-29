@@ -295,7 +295,7 @@ handle_mime() {
 
         ## Text
         text/* | */xml)
-            env COLORTERM=8bit BAT_THEME=base16 bat --color=always --style="plain" \
+            env COLORTERM=8bit BAT_THEME=gruvbox-dark bat --color=always --style="plain" \
                 -- "${FILE_PATH}" && exit 5
             exit 2;;
 

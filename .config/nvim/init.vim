@@ -1,6 +1,9 @@
 call plug#begin()
-Plug 'morhetz/gruvbox'
 Plug 'sheerun/vim-polyglot'
+Plug 'kyazdani42/nvim-web-devicons' " optional, for file icons
+Plug 'kyazdani42/nvim-tree.lua'
+Plug 'sainnhe/gruvbox-material'
+Plug 'windwp/nvim-autopairs'
 Plug 'dense-analysis/ale'
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-surround'
@@ -8,6 +11,11 @@ Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'tommcdo/vim-lion'
 Plug 'ntpeters/vim-better-whitespace'
 call plug#end()
+
+lua << EOF
+require("nvim-tree").setup()
+require("nvim-autopairs").setup {}
+EOF
 
 let mapleader=","
 autocmd BufReadPost * normal g`"
@@ -43,7 +51,9 @@ set noruler
 set laststatus=2
 filetype plugin on
 syntax on
-colorscheme my_base16
+colorscheme gruvbox-material
+hi Normal ctermbg=none
+hi EndOfBuffer ctermbg=none
 
 " ALE
 let b:ale_linters = ['pylint']
@@ -105,6 +115,8 @@ endfunction
 
 
 " my custom stuff
-map \b :,!sed<Space>-z<Space>'s/\n$//'<Bar>base64<Return>
-map \B :,!base64<Space>-d<Return>
+map \b :,!sed -z 's/\n$//'<Bar>base64 -w 0<Return>
+map \B :,!base64 -d<Return>
+map \u :,!php -r 'echo urlencode(file_get_contents("php://stdin"));'<Return>
+map \U :,!php -r 'echo urldecode(file_get_contents("php://stdin"));'<Return>
 "map <Leader>cC :ColorToggle<Return> "this is slow and should be changed

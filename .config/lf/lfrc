@@ -4,16 +4,16 @@ map i $LESSOPEN='| ~/.config/lf/previewer.sh %s 0 0 0 0' less -R $f
 
 set icons
 set ifs "\n"
-set hiddenfiles "~/.*:/home/lost+found:__pycache__"
+set hiddenfiles ".*:/home/lost+found:__pycache__"
 set period 1
 set info size
 set dircounts
 set promptfmt "\033[34;1m%d\033[0m\033[1m%f\033[0m"
 set mouse
-#cmd on-cd &{{
-#    echo -ne "\e]0;lf : $(sed 's@^/home/'$USER'@~@' <<< $PWD)\a" > /dev/tty
-#}}
-#on-cd
+cmd on-cd &{{
+    echo -ne "\e]0;lf : $(sed 's@^/home/'$USER'@~@' <<< $PWD)\a" > /dev/tty
+}}
+on-cd
 
 cmd open $rifle "$f"
 map <m-up> up

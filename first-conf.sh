@@ -1,9 +1,6 @@
 useradd aziz -Gwheel,video
-mkdir -p ~/.local/share/themes/Az1z/openbox-3 ~/.config/{dunst,zathura,conky} ~/.histfiles
-ln -s ~/.cache/wal/themerc ~/.local/share/themes/Az1z/openbox-3/
+mkdir -p ~/.config/{dunst,zathura} ~/.histfiles
 ln -s ~/.cache/wal/dunstrc ~/.config/dunst/dunstrc
 ln -s ~/.cache/wal/zathurarc ~/.config/zathura/zathurarc
-ln -s ~/.cache/wal/conky.conf ~/.config/conky/conky.conf
 
-# `go get schemer2` for pywal
-# transparent zathura from https://gist.github.com/miseran/0ea4b95e9816bf915b7b7171a5a0e42d
+git clone https://github.com/zdharma-continuum/fast-syntax-highlighting ~/.local/share/zsh/plugins/fsh/
