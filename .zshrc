@@ -1,7 +1,3 @@
-#
-# Aziz's ~/.zshrc
-#
-
 alias rm='rm -iv' # important
 
 # the actual configs

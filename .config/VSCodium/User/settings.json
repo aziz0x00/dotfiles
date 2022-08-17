@@ -2,8 +2,30 @@
     "vscode-neovim.logOutputToConsole": true,
     "vscode-neovim.neovimExecutablePaths.linux": "/bin/nvim",
     "workbench.startupEditor": "newUntitledFile",
-    "window.menuBarVisibility": "toggle",
     "editor.minimap.enabled": false,
     "editor.renderWhitespace": "none",
-    "workbench.activityBar.visible": false
+    "editor.fontFamily": "'Consolas', 'monospace', monospace, 'Droid Sans Fallback'",
+    "terminal.integrated.fontSize": 13,
+    "files.exclude": {
+        "**/__pycache__": true
+    },
+    "editor.fontSize": 13,
+    "window.zoomLevel": -1,
+    "workbench.colorTheme": "Gruvbox Material Dark",
+    "window.menuBarVisibility": "toggle",
+    "[dart]": {
+        "editor.formatOnSave": true,
+        "editor.formatOnType": true,
+        "editor.rulers": [
+            80
+        ],
+        "editor.selectionHighlight": false,
+        "editor.suggest.snippetsPreventQuickSuggestions": false,
+        "editor.suggestSelection": "first",
+        "editor.tabCompletion": "onlySnippets",
+        "editor.wordBasedSuggestions": false
+    },
+    "gruvboxMaterial.darkContrast": "hard",
+    "gruvboxMaterial.lightContrast": "hard",
+    "gruvboxMaterial.darkPalette": "mix"
 }

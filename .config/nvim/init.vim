@@ -1,20 +1,19 @@
 call plug#begin()
-Plug 'sheerun/vim-polyglot'
-Plug 'kyazdani42/nvim-web-devicons' " optional, for file icons
+Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'sainnhe/gruvbox-material'
 Plug 'windwp/nvim-autopairs'
-Plug 'dense-analysis/ale'
 Plug 'itchyny/lightline.vim'
-Plug 'tpope/vim-surround'
-Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-Plug 'tommcdo/vim-lion'
-Plug 'ntpeters/vim-better-whitespace'
+Plug 'lukas-reineke/indent-blankline.nvim'
+Plug 'dense-analysis/ale'
+Plug 'sheerun/vim-polyglot'
 call plug#end()
 
 lua << EOF
-require("nvim-tree").setup()
+require("nvim-tree").setup {}
 require("nvim-autopairs").setup {}
+vim.opt.list = true
+require("indent_blankline").setup {}
 EOF
 
 let mapleader=","
@@ -38,7 +37,7 @@ vnoremap . :normal .<CR>
 
 set splitbelow splitright
 
-map <leader>n :NERDTreeToggle<CR>
+map <leader>o :NvimTreeToggle<CR>
 map <leader>t :tabnew<CR>
 
 map <C-h> <C-w>h
@@ -56,7 +55,7 @@ hi Normal ctermbg=none
 hi EndOfBuffer ctermbg=none
 
 " ALE
-let b:ale_linters = ['pylint']
+let b:ale_linters = ['pylint', 'eslint']
 let b:ale_fixers = ['autopep8', 'yapf']
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
@@ -68,51 +67,7 @@ hi ALEErrorSign ctermfg=09 ctermbg=none
 hi ALEWarningSign ctermfg=3 ctermbg=none
 
 " LightLine
-let g:lightline = {
-	\ 'colorscheme': 'Tomorrow_Night_Bright',
-	\ 'active': {
-	\   'left': [ [ 'mode', 'paste' ],
-	\             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
-	\ },
-	\ 'component_function': {
-	\   'cocstatus': 'coc#status'
-	\ },
-	\ }
-
-autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
-
-" Coc SUPERMAGIC
-nmap <F2> <Plug>(coc-rename)
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>qf  <Plug>(coc-fix-current)
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-autocmd CursorHold * silent call CocActionAsync('highlight')
-" thanks to jdh https://gist.github.com/jdah/4b4d98c2ced36eb07b017c4ae2c94bab :
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  elseif (coc#rpc#ready())
-    call CocActionAsync('doHover')
-  else
-    execute '!' . &keywordprg . " " . expand('<cword>')
-  endif
-endfunction
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-inoremap <silent><expr> <TAB>  pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
+let g:lightline = {'colorscheme': 'gruvbox_material'}
 
 " my custom stuff
 map \b :,!sed -z 's/\n$//'<Bar>base64 -w 0<Return>
