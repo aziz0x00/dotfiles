@@ -1,3 +1,4 @@
+if !exists('g:vscode')
 call plug#begin()
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
@@ -18,14 +19,13 @@ EOF
 
 let mapleader=","
 autocmd BufReadPost * normal g`"
+set lazyredraw
 set nocompatible
 set title
 set go=a
 set mouse=a
 set hlsearch
 set clipboard+=unnamedplus
-set tabstop=4
-set shiftwidth=4
 set expandtab
 set undofile
 set number relativenumber
@@ -75,3 +75,4 @@ map \B :,!base64 -d<Return>
 map \u :,!php -r 'echo urlencode(file_get_contents("php://stdin"));'<Return>
 map \U :,!php -r 'echo urldecode(file_get_contents("php://stdin"));'<Return>
 "map <Leader>cC :ColorToggle<Return> "this is slow and should be changed
+endif

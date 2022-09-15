@@ -1,4 +1,8 @@
-alias rm='rm -iv' # important
+#alias rm='rm -iv' # important
+rm () {
+    echo are you crazy
+}
+alias _please_remove='/bin/rm -iv'
 
 # the actual configs
 source ~/.config/zsh/binds

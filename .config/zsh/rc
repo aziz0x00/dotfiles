@@ -58,11 +58,11 @@ zstyle ':completion:*:complete:*' cache-path .cache
 zstyle ':completion:*' rehash true
 
 # vim keys in tab completion menu
-zmodload zsh/complist
-bindkey -M menuselect 'h' vi-backward-char
-bindkey -M menuselect 'k' vi-up-line-or-history
-bindkey -M menuselect 'l' vi-forward-char
-bindkey -M menuselect 'j' vi-down-line-or-history
+#zmodload zsh/complist
+#bindkey -M menuselect 'h' vi-backward-char
+#bindkey -M menuselect 'k' vi-up-line-or-history
+#bindkey -M menuselect 'l' vi-forward-char
+#bindkey -M menuselect 'j' vi-down-line-or-history
 
 autoload insert-files && zle -N insert-files
 autoload insert-unicode-char && zle -N insert-unicode-char

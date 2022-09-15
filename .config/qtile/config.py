@@ -1,11 +1,11 @@
 from typing import List  # noqa: F401
-
-from libqtile import bar, layout, widget
-from libqtile.config import Click, Drag, Group, Key, Match, Screen
-from libqtile.lazy import lazy
-
 from os import getenv, system
 import datetime, re
+
+from libqtile import bar, layout, widget
+from libqtile.config import Click, Drag, Group, Key, Match, Screen, ScratchPad, DropDown
+from libqtile.lazy import lazy
+
 
 system('xsetroot -cursor_name left_ptr')
 color = [] # 0:bg, 7:fg
@@ -54,7 +54,7 @@ keys = [
     Key([M], "BackSpace", lazy.layout.toggle_split(),
         desc="Toggle between split and unsplit sides of stack"),
     Key([M], "Return", lazy.spawn('alacritty'), desc="Launch terminal"),
-    Key([M, "shift"], "Return", lazy.spawn('kitty'), desc="Launch terminal"),
+    Key([M, "shift"], "Return", lazy.spawn('alacritty -e tmux a'), desc="Launch terminal"),
 
     # Toggle between different layouts as defined below
     Key([M], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
@@ -67,9 +67,8 @@ keys = [
     # mine
     Key([M], "b", lazy.spawn('qutebrowser')),
     Key([M], "d", lazy.spawn('qstardict')),
-    Key([M], "o", lazy.spawn('open-rofi')),
     Key([M], "p", lazy.spawn('alacritty -t htop -e htop')),
-    Key([M], "e", lazy.spawn('alacritty -t "lf - file manager" -e lf')),
+    Key([M], "e", lazy.spawn('alacritty -e lf')),
     Key([M], "g", lazy.spawn('rofi -show window -show-icons -theme ~/.cache/wal/rofi')),
     Key([M, 'shift'], "c", lazy.spawn('edit-clip p')),
 
@@ -88,7 +87,7 @@ keys = [
     Key([], 'Print', lazy.spawn("bash -c 'maim -s $(date +\"%Y-%m-%d-%H:%M:%N.png\")'")),
     Key(['shift'], 'Print', lazy.spawn("bash -c 'maim $(date +\"%Y-%m-%d-%H:%M:%N.png\")'")),
 
-    Key(['control'], 'space', lazy.spawn('dunstctl close')),
+#    Key(['control'], 'space', lazy.spawn('dunstctl close')),
 #    Key(['control', 'shift'], 'space', lazy.spawn('dunstctl close-all')),
 #    Key(['control'], 'grave', lazy.spawn('dunstctl history-pop')),
 
@@ -96,7 +95,11 @@ keys = [
 ]
 
 groups = [Group(name=str(i+1), label=l) for i, l in \
-        enumerate(('general', 'code', 'web', 'etc'))]
+        enumerate(('general', 'code', 'web', 'pwn', 'etc'))]
+
+groups[1].matches = [Match(wm_class=['vscodium'])] # code group
+groups[2].matches = [Match(wm_class=['qutebrowser'])] # web group
+
 
 for i in groups:
     keys.extend([
@@ -113,11 +116,20 @@ for i in groups:
         #     desc="move focused window to group {}".format(i.name)),
     ])
 
+groups.append(ScratchPad("ScratchPad", [
+    DropDown('term', 'alacritty'),
+    DropDown('quran', 'alacritty -e ../homeathome/media/quran --no-video --shuffle',
+             on_focus_lost_hide=True)
+]))
+keys.append(
+    Key([], 'F10', lazy.group['ScratchPad'].dropdown_toggle('term'))
+)
+
 layouts = [
     layout.Columns(border_focus=color[2], border_normal=color[8],\
             border_on_single=True, border_width=1, margin=6,\
-            margin_on_single=[30, 100, 30, 100]),
-    layout.Max(),
+            margin_on_single=[30, 100, 30, 100], grow_amount=5),
+    layout.Max()
 ]
 
 widget_defaults = dict(
@@ -147,9 +159,9 @@ screens = [
                     graph_color=color[4]+'cc', fill_color=color[4]+'70'),
                 widget.Sep(foreground=color[4]+'cc', size_percent=100),
                 widget.Countdown(format='{H}:{M}:{S}', date=datetime.datetime(
-                    t.year, t.month, t.day, 21, 30)),
-                widget.Sep(foreground=color[4]+'cc', size_percent=100),
-                widget.Pomodoro(color_inactive=color[7]+'90'),
+                    t.year, t.month, t.day, 23, 00)),
+#                widget.Sep(foreground=color[4]+'cc', size_percent=100),
+#                widget.Pomodoro(color_inactive=color[7]+'90'),
                 widget.Sep(foreground=color[4]+'cc', size_percent=100),
                 widget.Battery(format=' {percent:2.0%}'),
                 widget.Sep(foreground=color[4]+'cc', size_percent=100),
@@ -180,6 +192,8 @@ floating_layout = layout.Floating(float_rules=[
     # Run the utility of `xprop` to see the wm class and name of an X client.
     *layout.Floating.default_float_rules,
     Match(wm_class='qstardict'),  # gitk
+    Match(wm_class='sxiv'),  # gitk
+    Match(wm_class='Zathura'),  # gitk
     Match(wm_class='Alacritty', title=re.compile('^Clipboard Editor')),
     Match(wm_class='makebranch'),  # gitk
     Match(wm_class='maketag'),  # gitk

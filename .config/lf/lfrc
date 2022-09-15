@@ -24,6 +24,7 @@ map ~ :{{
     set nopreview
     set ratios 1
     $~/.config/lf/clear_img.sh
+    on-cd
 }}
 map ` :{{
     set ratios 1:2:3

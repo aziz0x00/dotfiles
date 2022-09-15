@@ -2,13 +2,13 @@
 
 ## hist
 HISTSIZE=1000 SAVEHIST=10000
-[ -z $HISTFILE ] && HISTFILE=~/.histfile 
+[ -z $HISTFILE ] && HISTFILE=~/.histfile
 
 ## prompt
 autoload colors;colors
 #[ ! -z $SSH_TYPE -o -z $WINDOWID ] && c='>' || c='❯'
 c='='
-PS1="%(?.%{$fg[green]%}.%{$fg[red]%}) $c %{$fg[white]%}"
+PS1="%B%(?.%{$fg[green]%}.%{$fg[red]%}) $c %{$fg[white]%}%b"
 
 ## fzf
 export FZF_DEFAULT_OPTS="--color=16,prompt:2,bg+:-1 --margin 0,1,0 --prompt='$c ' --pointer='$c '"
