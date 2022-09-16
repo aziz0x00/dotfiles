@@ -27,5 +27,20 @@
     },
     "gruvboxMaterial.darkContrast": "hard",
     "gruvboxMaterial.lightContrast": "hard",
-    "gruvboxMaterial.darkPalette": "mix"
+    "gruvboxMaterial.darkPalette": "mix",
+    "dart.debugExternalPackageLibraries": true,
+    "dart.debugSdkLibraries": false,
+    "jupyter.diagnostics.reservedPythonNames.exclude": [
+        "**/site-packages/**",
+        "**/lib/python/**",
+        "**/lib64/python/**",
+    ],
+    "apklab.apkSignerPath": "/home/aziz/.apklab/uber-apk-signer-1.2.1.jar",
+    "apklab.apktoolPath": "/home/aziz/.apklab/apktool_2.6.1.jar",
+    "apklab.jadxDirPath": "/home/aziz/.apklab/jadx-1.4.3",
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "jupyter.diagnostics.reservedPythonNames.enabled": false,
+    "terminal.external.linuxExec": "alacritty"
 }
