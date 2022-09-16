@@ -116,9 +116,9 @@ handle_extension() {
             exiftool "${FILE_PATH}" && exit 5
             ;; # Continue with next handler on failure
 	
-	md)
-	    mdcat "${FILE_PATH}" | fmt -w "${PV_WIDTH}" && exit 5
-	    ;;
+    md)
+        mdcat "${FILE_PATH}" && exit 5
+        ;;
     esac
 }
 
