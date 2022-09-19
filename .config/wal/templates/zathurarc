@@ -1,6 +1,6 @@
-set font "Cantarell 11"
-set statusbar-h-padding 5
-set statusbar-v-padding 5
+set font "Cantarell 10"
+set statusbar-h-padding 3
+set statusbar-v-padding 2
 set completion-bg "{background}"
 set completion-fg "{foreground}"
 set completion-group-bg "{background}"

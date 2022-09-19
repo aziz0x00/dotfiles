@@ -118,7 +118,7 @@ handle_extension() {
 	
     md)
         mdcat "${FILE_PATH}" && exit 5
-        ;;
+	    ;;
     esac
 }
 

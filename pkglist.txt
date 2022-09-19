@@ -26,7 +26,6 @@ bluez-utils
 bully
 burpsuite
 catdoc
-checksec
 cherrytree
 clinfo
 composer

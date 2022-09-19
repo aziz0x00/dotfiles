@@ -15,7 +15,4 @@ source ~/.config/zsh/env
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /etc/grc.zsh
-curl () {
-    /bin/curl $@ -i --path-as-is
-}
 source ~/.local/share/zsh/plugins/fsh/fast-syntax-highlighting.plugin.zsh

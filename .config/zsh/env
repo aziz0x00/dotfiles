@@ -7,7 +7,7 @@ HISTSIZE=1000 SAVEHIST=10000
 ## prompt
 autoload colors;colors
 #[ ! -z $SSH_TYPE -o -z $WINDOWID ] && c='>' || c='❯'
-c='='
+c='λ'
 PS1="%B%(?.%{$fg[green]%}.%{$fg[red]%}) $c %{$fg[white]%}%b"
 
 ## fzf
