@@ -27,6 +27,7 @@ now anyone can live with freedom and peace without the lack of aestheticism (gra
 - `qutebrowser` <3
 - `picom`
 - `zathura`
+- `pwninit`
 and so so much more, I love y'all <3.
 
 ## stuff I did here I didn't see nowhere else:

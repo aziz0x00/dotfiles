@@ -1,105 +1,14 @@
-from typing import List  # noqa: F401
-from os import getenv, system
-import datetime, re
+from os     import system
 
-from libqtile import bar, layout, widget
-from libqtile.config import Click, Drag, Group, Key, Match, Screen, ScratchPad, DropDown
-from libqtile.lazy import lazy
+from mods.colors   import *
+from mods.floating import *
+from mods.groups   import *
+from mods.keys     import *
+from mods.screens  import *
 
 
 system('xsetroot -cursor_name left_ptr')
-color = [] # 0:bg, 7:fg
-with open(getenv('HOME')+'/.cache/wal/colors') as f:
-    for c in f.read().splitlines():
-        color.append(c)
-
-A = 'mod1'
-M = "mod4"
 terminal = 'alacritty'
-
-keys = [
-    # Switch between windows
-    Key([M], "h", lazy.layout.left(), desc="Move focus to left"),
-    Key([M], "l", lazy.layout.right(), desc="Move focus to right"),
-    Key([M], "j", lazy.layout.down(), desc="Move focus down"),
-    Key([M], "k", lazy.layout.up(), desc="Move focus up"),
-    Key([M], "space", lazy.layout.next(),
-        desc="Move window focus to other window"),
-
-    # Move windows between left/right columns or move up/down in current stack.
-    # Moving out of range in Columns layout will create new column.
-    Key([M, "shift"], "h", lazy.layout.shuffle_left(),
-        desc="Move window to the left"),
-    Key([M, "shift"], "l", lazy.layout.shuffle_right(),
-        desc="Move window to the right"),
-    Key([M, "shift"], "j", lazy.layout.shuffle_down(),
-        desc="Move window down"),
-    Key([M, "shift"], "k", lazy.layout.shuffle_up(), desc="Move window up"),
-
-    # Grow windows. If current window is on the edge of screen and direction
-    # will be to screen edge - window would shrink.
-    Key([M, "control"], "h", lazy.layout.grow_left(),
-        desc="Grow window to the left"),
-    Key([M, "control"], "l", lazy.layout.grow_right(),
-        desc="Grow window to the right"),
-    Key([M, "control"], "j", lazy.layout.grow_down(),
-        desc="Grow window down"),
-    Key([M, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
-    Key([M], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
-
-    # Toggle between split and unsplit sides of stack.
-    # Split = all windows displayed
-    # Unsplit = 1 window displayed, like Max layout, but still with
-    # multiple stack panes
-    Key([M], "BackSpace", lazy.layout.toggle_split(),
-        desc="Toggle between split and unsplit sides of stack"),
-    Key([M], "Return", lazy.spawn('alacritty'), desc="Launch terminal"),
-    Key([M, "shift"], "Return", lazy.spawn('alacritty -e tmux a'), desc="Launch terminal"),
-
-    # Toggle between different layouts as defined below
-    Key([M], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
-    Key([M], "q", lazy.window.kill(), desc="Kill focused window"),
-
-    Key([M, "control"], "r", lazy.restart(), desc="Restart Qtile"),
-    Key([M], "f", lazy.window.toggle_floating()),
-
-
-    # mine
-    Key([M], "b", lazy.spawn('qutebrowser')),
-    Key([M], "d", lazy.spawn('qstardict')),
-    Key([M], "p", lazy.spawn('alacritty -t htop -e htop')),
-    Key([M], "e", lazy.spawn('alacritty -e lf')),
-    Key([M], "g", lazy.spawn('rofi -show window -show-icons -theme ~/.cache/wal/rofi')),
-    Key([M, 'shift'], "c", lazy.spawn('edit-clip p')),
-
-    Key([A], 'bracketright', lazy.screen.next_group()),
-    Key([A], 'bracketleft', lazy.screen.prev_group()),
-    Key([A], 'backslash', lazy.screen.toggle_group()),
-    # volume & brightness
-    Key([], 'XF86AudioLowerVolume', lazy.spawn("bash -c \"amixer set Master 1%-; dunstify -t 400 -u low -r 1 Volume $(amixer get Master|tail -1|awk -F'[][]' '{print $2}')\"")),
-    Key([], 'XF86AudioRaiseVolume', lazy.spawn("bash -c \"amixer set Master 1%+; dunstify -t 400 -u low -r 1 Volume $(amixer get Master|tail -1|awk -F'[][]' '{print $2}')\"")),
-    Key([], 'XF86AudioMute', lazy.spawn("amixer set Master toggle")),
-
-    Key([], 'XF86MonBrightnessDown', lazy.spawn("bash -c \"xbacklight -dec 5; dunstify -t 400 -u low -r 1 Brightness $(xbacklight -get)\"")),
-    Key([], 'XF86MonBrightnessUp', lazy.spawn("bash -c \"xbacklight -inc 5; dunstify -t 400 -u low -r 1 Brightness $(xbacklight -get)\"")),
-
-    # screenshot
-    Key([], 'Print', lazy.spawn("bash -c 'maim -s $(date +\"%Y-%m-%d-%H:%M:%N.png\")'")),
-    Key(['shift'], 'Print', lazy.spawn("bash -c 'maim $(date +\"%Y-%m-%d-%H:%M:%N.png\")'")),
-
-#    Key(['control'], 'space', lazy.spawn('dunstctl close')),
-#    Key(['control', 'shift'], 'space', lazy.spawn('dunstctl close-all')),
-#    Key(['control'], 'grave', lazy.spawn('dunstctl history-pop')),
-
-#    Key([], 'XF86UWB', lazy.spawn('sudo rfkill toggle wlan')),
-]
-
-groups = [Group(name=str(i+1), label=l) for i, l in \
-        enumerate(('general', 'code', 'web', 'pwn', 'etc'))]
-
-groups[1].matches = [Match(wm_class=['vscodium'])] # code group
-groups[2].matches = [Match(wm_class=['qutebrowser'])] # web group
-
 
 for i in groups:
     keys.extend([
@@ -116,13 +25,9 @@ for i in groups:
         #     desc="move focused window to group {}".format(i.name)),
     ])
 
-groups.append(ScratchPad("ScratchPad", [
-    DropDown('term', 'alacritty'),
-    DropDown('quran', 'alacritty -e ../homeathome/media/quran --no-video --shuffle',
-             on_focus_lost_hide=True)
-]))
-keys.append(
-    Key([], 'F10', lazy.group['ScratchPad'].dropdown_toggle('term'))
+
+groups.append(
+    ScratchPad("ScratPad", [DropDown('term', 'alacritty')])
 )
 
 layouts = [
@@ -139,71 +44,7 @@ widget_defaults = dict(
 )
 extension_defaults = widget_defaults.copy()
 
-t = datetime.datetime.today()
-screens = [
-    Screen(
-        top=bar.Bar(
-            [
-                widget.CurrentLayoutIcon(scale=.6, background=color[4]+'cc'),
-                widget.GroupBox(highlight_method='line', disable_drag=True,\
-                        highlight_color=[color[4]+'20']*2,\
-                        this_current_screen_border=color[4]+'80',\
-                        active=color[15], inactive=color[8], margin_x=0),
-                widget.WindowName(foreground='#ffffff',\
-                        background=color[4]+'cc',\
-                        fontsize=13, padding=4),
-                widget.Wlan(interface='wlp3s0', disconnected_message='',\
-                        foreground=color[7]),
-                widget.Net(foreground=color[7]+'90'),
-                widget.NetGraph(border_width=0, line_width=1,\
-                    graph_color=color[4]+'cc', fill_color=color[4]+'70'),
-                widget.Sep(foreground=color[4]+'cc', size_percent=100),
-                widget.Countdown(format='{H}:{M}:{S}', date=datetime.datetime(
-                    t.year, t.month, t.day, 23, 00)),
-#                widget.Sep(foreground=color[4]+'cc', size_percent=100),
-#                widget.Pomodoro(color_inactive=color[7]+'90'),
-                widget.Sep(foreground=color[4]+'cc', size_percent=100),
-                widget.Battery(format=' {percent:2.0%}'),
-                widget.Sep(foreground=color[4]+'cc', size_percent=100),
-                widget.Clock(format=' %a, %b %d - %R '),
-            ],
-            26,
-            background=color[0]+'cc'
-        ),
-    ),
-]
-del t
 
-# Drag floating layouts.
-mouse = [
-    Drag([M], "Button1", lazy.window.set_position_floating(),
-         start=lazy.window.get_position()),
-    Drag([M], "Button3", lazy.window.set_size_floating(),
-         start=lazy.window.get_size()),
-    Click([M], "Button2", lazy.window.bring_to_front())
-]
-
-dgroups_key_binder = None
-dgroups_app_rules = []
-follow_mouse_focus = False
-bring_front_click = False
-cursor_warp = False
-floating_layout = layout.Floating(float_rules=[
-    # Run the utility of `xprop` to see the wm class and name of an X client.
-    *layout.Floating.default_float_rules,
-    Match(wm_class='qstardict'),  # gitk
-    Match(wm_class='sxiv'),  # gitk
-    Match(wm_class='Zathura'),  # gitk
-    Match(wm_class='Alacritty', title=re.compile('^Clipboard Editor')),
-    Match(wm_class='makebranch'),  # gitk
-    Match(wm_class='maketag'),  # gitk
-    Match(wm_class='ssh-askpass'),  # ssh-askpass
-    Match(title='branchdialog'),  # gitk
-    Match(title='pinentry'),  # GPG key password entry
-], border_focus=color[2], border_normal=color[8])
-auto_fullscreen = True
-focus_on_window_activation = "smart"
-reconfigure_screens = True
 
 # If things like steam games want to auto-minimize themselves when losing
 # focus, should we respect this or not?

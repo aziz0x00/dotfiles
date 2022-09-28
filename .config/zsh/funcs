@@ -15,7 +15,7 @@ _history_sessions() {
 	} && export HISTFILE=$x && unset x
 }
 
-## window titling
+## window title
 precmd () {
 	__s=$?
 	[ -z $__saved_1 ] && print -Pn '\e]0;%~\a'\

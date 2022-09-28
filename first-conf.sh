@@ -28,6 +28,12 @@ function sys_conf() {
   cp -r etc/* /etc -rv
 
   usermod $myname -aG wireshark,docker,input,video
+
+
+  # make coredumps accessable in containers:
+  mkdir /var/crash
+  sysctl kernel.core_pattern='/var/crash/core.%E.%h.%p'
+  sysctl kernel.core_uses_pid=0
 }
 
 

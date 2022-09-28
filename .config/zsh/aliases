@@ -21,4 +21,9 @@ curl () {
     /bin/curl $@ -i --path-as-is
 }
 
+
+
+alias pwninit='pwninit --template-path ~/.config/pwninit-template.py --template-bin-name e'
+
+
 # vi:filetype=zsh
