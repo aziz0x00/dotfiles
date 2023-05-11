@@ -1,0 +1,3 @@
+! X colors.
+*.foreground:       {foreground}
+*.background:       {background}

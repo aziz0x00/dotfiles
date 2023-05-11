@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Name=Text editor
+Exec=/bin/alacritty -e nvim %u
+# TODO: make it a tmux window in the ScartchPad

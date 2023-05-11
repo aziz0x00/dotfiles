@@ -1,0 +1,27 @@
+#!/bin/bash
+
+
+case $1 in
+
+    y) # copy all selected image paths to clipboard
+        # normalize image paths to absolue paths
+        sed "s@^\\/@$(pwd)@" | xclip -sel c
+        ;;
+
+    Y) # copy image to clipboard
+        read image_path
+        xclip -se c -target $(file -b --mime-type "$image_path") "$image_path"
+        ;;
+
+    # set selected image as wallpaper, only the ealiest
+    # in the list will be set
+    w)
+        read image_path
+        xwallpaper --zoom "$image_path"
+        rm -f .config/bg
+        ln -s "$image_path" .config/bg
+        ;;
+
+    # # set theme based on pic with the amazing pywal
+    # C-w) set-theme "$image_path" ;;
+esac

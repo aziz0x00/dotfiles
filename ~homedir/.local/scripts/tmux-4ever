@@ -1,0 +1,24 @@
+#!/bin/env bash
+
+while true; do
+
+    selected=$(find * desk/*  -maxdepth 0 -type d ! -name .\* | fzf)
+
+    if [[ -z "$selected" ]]; then
+        break
+    fi
+
+    if [[ ! -d "$selected" ]]; then
+        mkdir -p "$selected"
+        if [[ $? != 0 ]]; then
+            echo "Can't create the directory"
+            exit 1
+        fi
+    fi
+
+    selected_name=$(basename "$selected" | tr . _ | tr '-' _)
+
+
+    # I symblinked desk_history to fish_history in ~/.local/share/fish/
+    tmux new-session -As $selected_name -c $selected -e fish_history=$selected_name
+done

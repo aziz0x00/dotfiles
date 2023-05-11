@@ -1,5 +1,0 @@
-[Desktop Entry]
-Type=Application
-Name=Text editor
-#Exec=/bin/subl %u      ----  im not moving to subl when im in another workspace and it sucks
-Exec=/bin/alacritty -e nvim %u
