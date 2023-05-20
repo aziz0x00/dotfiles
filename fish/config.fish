@@ -22,7 +22,8 @@ end
 if status is-interactive
     # Commands to run in interactive sessions can go here
     source /etc/grc.fish
-    source /usr/share/fish/vendor_functions.d/fzf_key_bindings.fish && fzf_key_bindings
+    fzf_key_bindings
+    bind \cr redo
 
     source $__fish_config_dir/interactive/main.fish
 end

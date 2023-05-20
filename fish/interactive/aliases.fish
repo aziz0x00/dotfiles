@@ -1,4 +1,5 @@
 alias vi=nvim
+alias 0vi='nvim -u NONE --cmd "set noswapfile noundofile"'
 alias ls=exa
 alias l='ls -la'
 alias yay='yay --color=auto'

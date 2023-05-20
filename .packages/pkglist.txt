@@ -178,9 +178,9 @@ traceroute
 transmission-cli
 transmission-qt
 ttf-dejavu
-ttf-droid
 ttf-font-awesome
 ttf-nerd-fonts-symbols-mono
+ttf-ibm-plex
 udftools
 unzip
 virtualbox

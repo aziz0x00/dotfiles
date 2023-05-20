@@ -1,14 +1,14 @@
 local autocmd = vim.api.nvim_create_autocmd
 
 -- highlight on text copy
-autocmd('TextYankPost', {
+autocmd("TextYankPost", {
     callback = function()
         vim.highlight.on_yank()
     end,
 })
 
 -- trim spaces in eol
-autocmd({"BufWritePre"}, {
+autocmd("BufWritePre", {
     pattern = "*",
     command = [[%s/\s\+$//e]],
 })
@@ -26,6 +26,6 @@ autocmd("BufReadPost", {
 })
 
 -- don't comment on new line
-autocmd({"BufEnter"}, {
-    command = [[set formatoptions-=cro]]
+autocmd("BufEnter", {
+    command = [[set formatoptions-=cro]],
 })
