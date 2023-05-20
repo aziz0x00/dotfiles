@@ -77,11 +77,14 @@ return {
                         IndentBlanklineChar = { fg = colors.surface0 },
                         IndentBlanklineContextChar = { fg = colors.surface2 },
                         GitSignsChange = { fg = colors.peach },
+                        -- IlluminatedWordRead = { bg = colors.surface1 },
+                        -- IlluminatedWordWrite = { bg = colors.surface1 },
+                        IlluminatedWordText = { bg = "" },
                     }
                 end,
                 integrations = {
                     fidget = true,
-                }
+                },
             })
 
             vim.cmd.colorscheme("catppuccin")

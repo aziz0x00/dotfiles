@@ -1,7 +1,6 @@
 return {
     "numToStr/Comment.nvim",
-    lazy = true,
-    keys = {"<leader>c", "<leader>C"},
+    keys = { { "<leader>c", mode = "v" }, { "<leader>C", mode = "v" } },
     config = function()
         require("Comment").setup({
             ignore = "^$",

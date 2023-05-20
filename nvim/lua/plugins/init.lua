@@ -27,7 +27,7 @@ require("lazy").setup({
     {
         "norcalli/nvim-colorizer.lua",
         lazy = true,
-        keys = { "<cmd>ColorizerToggle<CR>" },
+        keys = { { "<leader>c", "<cmd>ColorizerToggle<CR>" } },
         opts = {},
     },
     {
@@ -57,7 +57,7 @@ require("lazy").setup({
         keys = { "<C-a>", { "<C-x>", mode = "n" } },
     },
 
-    -- { "RRethy/vim-illuminate" },
+    { "RRethy/vim-illuminate" },
 
     { import = "plugins.modules" },
 }, {

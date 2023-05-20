@@ -71,7 +71,7 @@ return {
                         symbols = { error = " ", warn = " ", info = " " },
                     },
                 },
-                lualine_x = { "encoding" },
+                lualine_x = { "encoding", "fileformat" },
                 lualine_y = { "location" },
                 lualine_z = { "progress" },
             },

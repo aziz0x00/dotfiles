@@ -40,6 +40,10 @@ return {
             require("luasnip.loaders.from_vscode").lazy_load()
 
             cmp.setup({
+                preselect = "item",
+                completion = {
+                    completeopt = "menu,menuone,noinsert",
+                },
                 sources = {
                     { name = "path" },
                     { name = "nvim_lsp" },

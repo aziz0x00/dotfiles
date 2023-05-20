@@ -20,7 +20,6 @@ vim.keymap.set("n", "<leader>Y", [["+Y]])
 vim.keymap.set({"n", "v"}, "<leader>d", [["_d]])
 
 vim.keymap.set("n", "Q", "<nop>")
--- vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 
 vim.keymap.set("n", "<leader>K", "<cmd>cnext<CR>zz")
 vim.keymap.set("n", "<leader>J", "<cmd>cprev<CR>zz")
@@ -30,8 +29,6 @@ vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 -- vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
--- vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.config/nvim/.config/nvim/lua/config/packer.lua<CR>");
--- vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
 
 -- vim.keymap.set("n", "<leader><leader>", function()
 --     vim.cmd("so")
@@ -44,3 +41,5 @@ vim.keymap.set("n", "<C-l>", "<C-w>l")
 
 -- use jj to quit, trying this out..
 vim.keymap.set('i', 'jj', '<ESC>')
+
+vim.keymap.set("n", '<leader>t', "<cmd>sp term://fish<CR>")
