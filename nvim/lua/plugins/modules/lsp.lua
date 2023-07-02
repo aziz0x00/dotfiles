@@ -36,6 +36,8 @@ return {
             -- And you can configure cmp even more, if you want to.
             local cmp = require("cmp")
             local cmp_action = require("lsp-zero.cmp").action()
+            -- local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+            -- cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
             require("luasnip.loaders.from_vscode").lazy_load()
 
@@ -82,16 +84,26 @@ return {
 
             local lsp = require("lsp-zero").preset("recommended")
 
-            lsp.ensure_installed({
-                "tsserver",
-                "pyright",
-            })
+            -- lsp.ensure_installed({
+            --     "tsserver",
+            --     "pyright",
+            -- })
 
             lsp.on_attach(function(_, bufnr)
                 local opts = { buffer = bufnr }
                 lsp.default_keymaps(opts)
-                vim.keymap.set("n", "gr", require("telescope.builtin").lsp_references, opts)
-                vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, opts)
+
+                -- keep Telescope on lazy load <3
+                vim.keymap.set("n", "gr", function()
+                    require("telescope.builtin").lsp_references()
+                end, opts)
+                vim.keymap.set("n", "gd", function()
+                    require("telescope.builtin").lsp_definitions()
+                end, opts)
+
+                vim.keymap.set("n", "<leader>f", function()
+                    vim.lsp.buf.format()
+                end, opts)
             end)
 
             -- (Optional) Configure lua language server for neovim
@@ -109,9 +121,10 @@ return {
             local null_ls = require("null-ls")
             null_ls.setup({
                 sources = {
+                    null_ls.builtins.code_actions.gitsigns,
                     null_ls.builtins.formatting.stylua,
                     null_ls.builtins.formatting.prettier.with({
-                        extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" },
+                        timeout = -1,
                     }),
                     null_ls.builtins.formatting.black.with({ extra_args = { "--fast" } }),
                     null_ls.builtins.formatting.shfmt.with({ extra_args = { "--indent=4" } }),

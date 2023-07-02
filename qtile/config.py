@@ -44,11 +44,22 @@ groups.append(
             ),
             DropDown(
                 "htop",
-                "alacritty -e htop",
-                height=0.8,
+                "alacritty -t htop -e htop",
+                height=0.9,
                 width=0.8,
                 x=0.1,
-                y=0.1,
+                y=0.01,
+                on_focus_lost_hide=True,
+                opacity=0.95,
+                warp_pointer=True,
+            ),
+            DropDown(
+                "my-running-memo",
+                "alacritty -t memo -e nvim -i NONE .my-running-memo.md",
+                height=1,
+                width=0.4,
+                x=0.6,
+                y=0,
                 on_focus_lost_hide=True,
                 opacity=0.95,
                 warp_pointer=True,
@@ -58,22 +69,22 @@ groups.append(
 )
 
 layouts = [
+    layout.Max(),
     layout.Columns(
-        border_focus=color[2],
+        border_focus=color[3],
         border_normal=color[8],
         border_on_single=True,
         border_width=1,
-        margin=6,
+        margin=3,
         margin_on_single=[30, 100, 30, 100],
         grow_amount=5,
     ),
-    layout.Max(),
 ]
 
 widget_defaults = dict(
     font="sans",
-    fontsize=12,
-    padding=3,
+    fontsize=16,
+    padding=6,
 )
 extension_defaults = widget_defaults.copy()
 

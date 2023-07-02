@@ -1,0 +1,58 @@
+configuration {{
+  display-window: "  "; // default icon
+}}
+
+* {{
+  fg: {foreground};
+  primary: {color12};
+  transparency: "real";
+  background-color: transparent;
+  font: "Cantarell 11";
+}}
+
+window {{
+  fullscreen: true;
+  padding: calc( 100% - 600px ) calc( 100% - 1000px );
+  background-color: {background}c0;
+}}
+
+prompt {{
+  font: "FontAwesome 11";
+  padding: 11 0 0 7;
+  text-color: @primary;
+}}
+
+entry {{
+  padding: 9 0 9 3;
+  text-color: @fg;
+}}
+
+inputbar {{
+  border: 1px;
+  border-color: @primary;
+  children: [prompt, entry];
+  margin: 60 0;
+}}
+
+listview {{
+  columns: 1;
+  lines: 8;
+}}
+
+element {{
+  margin: 3;
+}}
+
+element-text {{
+  background-color: {background}80;
+  text-color: {foreground}90;
+  padding: 2;
+}}
+
+element-icon {{
+  size: 20px;
+}}
+
+element-text selected {{
+  text-color: {foreground}d8;
+}}

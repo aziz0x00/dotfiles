@@ -1,5 +1,5 @@
-set previewer ~/.config/lf/previewer.sh
-set cleaner ~/.config/lf/clear_img.sh
+#set previewer ~/.config/lf/previewer.sh
+#set cleaner ~/.config/lf/clear_img.sh
 map i $LESSOPEN='| ~/.config/lf/previewer.sh %s 0 0 0 0' less -R $f
 
 set icons
@@ -20,10 +20,13 @@ map <m-up> up
 map <m-down> down
 map <enter> open
 map <backspace2> set hidden!
+
+set nopreview
+set ratios 1
 map ~ :{{
     set nopreview
     set ratios 1
-    $~/.config/lf/clear_img.sh
+    #$~/.config/lf/clear_img.sh
     on-cd
 }}
 map ` :{{

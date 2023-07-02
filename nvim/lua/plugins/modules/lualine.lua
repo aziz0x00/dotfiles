@@ -1,47 +1,28 @@
 return {
     "nvim-lualine/lualine.nvim",
-    -- enabled = false,
     lazy = false,
     event = { "BufReadPost", "BufNewFile" },
     config = function()
-        local colors = {
-            active = {
-                bg = "#232728",
-                fg = "#D4BE98",
-            },
-            inactive = {
-                bg = "#232728",
-                fg = "#4B4F51",
-            },
-        }
-        local theme = {}
-        for _, mode in ipairs({ "command", "insert", "normal", "replace", "terminal", "visual" }) do
-            theme[mode] = {}
-            for _, place in ipairs({ "a", "b", "c" }) do
-                theme[mode][place] = colors.active
-            end
-        end
-        theme.inactive = { c = colors.inactive }
         require("lualine").setup({
             options = {
-                theme = theme,
+                theme = "onedark",
                 icons_enabled = true,
                 section_separators = "",
                 component_separators = "",
                 disabled_filetypes = {
                     statusline = {
-                        "help",
-                        "startify",
-                        "dashboard",
-                        "neo-tree",
-                        "packer",
-                        "neogitstatus",
+                        -- "help",
+                        -- "startify",
+                        -- "dashboard",
+                        -- "neo-tree",
+                        -- "packer",
+                        -- "neogitstatus",
                         "Trouble",
-                        "lir",
-                        "Outline",
-                        "spectre_panel",
-                        "toggleterm",
-                        "qf",
+                        -- "lir",
+                        -- "Outline",
+                        -- "spectre_panel",
+                        -- "toggleterm",
+                        -- "qf",
                     },
                     winbar = {},
                 },
@@ -50,7 +31,6 @@ return {
                 lualine_a = {},
                 lualine_b = { "branch" },
                 lualine_c = {
-                    -- "filename",
                     {
                         "filetype",
                         icon_only = true,
@@ -63,7 +43,7 @@ return {
                     {
                         "filename",
                         path = 1,
-                        symbols = { modified = "[+]", readonly = "", unnamed = "" },
+                        symbols = { modified = "[+]", readonly = "[RO]", unnamed = "" },
                     },
                     {
                         "diagnostics",
@@ -71,9 +51,14 @@ return {
                         symbols = { error = " ", warn = " ", info = " " },
                     },
                 },
-                lualine_x = { "encoding", "fileformat" },
-                lualine_y = { "location" },
-                lualine_z = { "progress" },
+                lualine_x = {
+                    "diff",
+                    "encoding",
+                    "fileformat",
+                    "location",
+                },
+                lualine_y = { "progress" },
+                lualine_z = {},
             },
             inactive_sections = {
                 lualine_a = {},

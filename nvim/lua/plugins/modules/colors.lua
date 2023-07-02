@@ -1,93 +1,50 @@
 return {
     {
-        "catppuccin/nvim",
-        enabled = true,
-        lazy = false,
-        priority = 150,
-        name = "catppuccin",
+        "navarasu/onedark.nvim",
         config = function()
-            require("catppuccin").setup({
-                background = { dark = "mocha" },
-                color_overrides = {
-                    mocha = {
-                        rosewater = "#EA6962",
-                        flamingo = "#EA6962",
-                        pink = "#D3869B",
-                        mauve = "#D3869B",
-                        red = "#EA6962",
-                        maroon = "#EA6962",
-                        peach = "#BD6F3E",
-                        yellow = "#D8A657",
-                        green = "#A9B665",
-                        teal = "#89B482",
-                        sky = "#89B482",
-                        sapphire = "#89B482",
-                        blue = "#7DAEA3",
-                        lavender = "#7DAEA3",
-                        text = "#D4BE98",
-                        subtext1 = "#BDAE8B",
-                        subtext0 = "#A69372",
-                        overlay2 = "#8C7A58",
-                        overlay1 = "#735F3F",
-                        overlay0 = "#958272",
-                        surface2 = "#4B4F51",
-                        surface1 = "#4A4D3E",
-                        surface0 = "#232728",
-                        base = "#1D2021",
-                        mantle = "#191C1D",
-                        crust = "#151819",
-                    },
+            require("onedark").setup({
+                -- Main options --
+                style = "dark",               -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
+                transparent = true,           -- Show/hide background
+                term_colors = true,           -- Change terminal color as per the selected theme style
+                ending_tildes = false,        -- Show the end-of-buffer tildes. By default they are hidden
+                cmp_itemkind_reverse = false, -- reverse item kind highlights in cmp menu
+
+                -- toggle theme style ---
+                toggle_style_key = nil,                                                              -- keybind to toggle theme style. Leave it nil to disable it, or set it to a string, for example "<leader>ts"
+                toggle_style_list = { "dark", "darker", "cool", "deep", "warm", "warmer", "light" }, -- List of styles to toggle between
+
+                -- Change code style ---
+                -- Options are italic, bold, underline, none
+                -- You can configure multiple style with comma separated, For e.g., keywords = 'italic,bold'
+                code_style = {
+                    comments = "italic",
+                    keywords = "none",
+                    functions = "none",
+                    strings = "none",
+                    variables = "none",
                 },
-                styles = {
-                    comments = { "italic" },
-                    conditionals = {},
-                    loops = {},
-                    functions = { "italic" },
-                    keywords = { "italic" },
-                    strings = {},
-                    variables = {},
-                    numbers = {},
-                    booleans = { "bold" },
-                    properties = {},
-                    types = { "bold" },
-                    operators = {},
+
+                -- Lualine options --
+                lualine = {
+                    transparent = false, -- lualine center bar transparency
                 },
-                transparent_background = true,
-                show_end_of_buffer = false,
-                custom_highlights = function(colors)
-                    return {
-                        NormalFloat = { bg = colors.crust },
-                        FloatBorder = { bg = colors.crust, fg = colors.crust },
-                        VertSplit = { bg = colors.base, fg = colors.surface0 },
-                        CursorLineNr = { fg = colors.overlay0 },
-                        Pmenu = { bg = colors.crust, fg = "" },
-                        PmenuSel = { bg = colors.surface0, fg = "" },
-                        TelescopeSelection = { bg = colors.surface0 },
-                        TelescopePromptCounter = { fg = colors.mauve },
-                        TelescopePromptPrefix = { bg = colors.surface0 },
-                        TelescopePromptNormal = { bg = colors.surface0 },
-                        TelescopeResultsNormal = { bg = colors.mantle },
-                        TelescopePreviewNormal = { bg = colors.crust },
-                        TelescopePromptBorder = { bg = colors.surface0, fg = colors.surface0 },
-                        TelescopeResultsBorder = { bg = colors.mantle, fg = colors.mantle },
-                        TelescopePreviewBorder = { bg = colors.crust, fg = colors.crust },
-                        TelescopePromptTitle = { fg = colors.surface0, bg = colors.surface0 },
-                        TelescopeResultsTitle = { fg = colors.mantle, bg = colors.mantle },
-                        TelescopePreviewTitle = { fg = colors.crust, bg = colors.crust },
-                        IndentBlanklineChar = { fg = colors.surface0 },
-                        IndentBlanklineContextChar = { fg = colors.surface2 },
-                        GitSignsChange = { fg = colors.peach },
-                        -- IlluminatedWordRead = { bg = colors.surface1 },
-                        -- IlluminatedWordWrite = { bg = colors.surface1 },
-                        IlluminatedWordText = { bg = "" },
-                    }
-                end,
-                integrations = {
-                    fidget = true,
+
+                -- Custom Highlights --
+                colors = {},     -- Override default colors
+                -- highlights = {
+                --     FloatBorder = {bg = "none"},
+                --     FloatNormal = {bg = "none"}
+                -- }, -- Override highlight groups
+
+                -- Plugins Config --
+                diagnostics = {
+                    darker = true,     -- darker colors for diagnostic
+                    undercurl = true,  -- use undercurl instead of underline for diagnostics
+                    background = true, -- use background color for virtual text
                 },
             })
-
-            vim.cmd.colorscheme("catppuccin")
+            require("onedark").load()
         end,
     },
 }

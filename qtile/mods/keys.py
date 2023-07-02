@@ -37,12 +37,13 @@ keys = [
         desc="Toggle between split and unsplit sides of stack",
     ),
     Key([M], "Return", lazy.spawn("alacritty"), desc="Launch terminal"),
-    Key(
-        [M, "shift"],
-        "Return",
-        lazy.spawn("alacritty -e tmux a"),
-        desc="Launch terminal",
-    ),
+    # Key(
+    #     [M, "shift"],
+    #     "Return",
+    #     lazy.spawn("alacritty -e tmux a"),
+    #     desc="Launch terminal",
+    # ),
+
     # Toggle between different layouts as defined below
     Key([M], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
     Key([M], "q", lazy.window.kill(), desc="Kill focused window"),
@@ -50,6 +51,7 @@ keys = [
     Key([M], "f", lazy.window.toggle_floating()),
     # mine
     Key([M], "b", lazy.spawn("qutebrowser")),
+    Key([M], "v", lazy.spawn("wireshark")),
     #    Key([M, 'shift'], "c", lazy.spawn('edit-clip p')),
     Key([A], "bracketright", lazy.screen.next_group()),
     Key([A], "bracketleft", lazy.screen.prev_group()),
@@ -59,29 +61,29 @@ keys = [
         [],
         "XF86AudioLowerVolume",
         lazy.spawn(
-            "bash -c \"amixer set Master 1%-; dunstify -t 400 -u low -r 1 Volume $(amixer get Master|tail -1|awk -F'[][]' '{print $2}')\""
+            "bash -c \"amixer set Master 1%-; dunstify -t 800 -u low -r 1 Volume $(amixer get Master|tail -1|awk -F'[][]' '{print $2}')\""
         ),
     ),
     Key(
         [],
         "XF86AudioRaiseVolume",
         lazy.spawn(
-            "bash -c \"amixer set Master 1%+; dunstify -t 400 -u low -r 1 Volume $(amixer get Master|tail -1|awk -F'[][]' '{print $2}')\""
+            "bash -c \"amixer set Master 1%+; dunstify -t 800 -u low -r 1 Volume $(amixer get Master|tail -1|awk -F'[][]' '{print $2}')\""
         ),
     ),
-    Key([], "XF86AudioMute", lazy.spawn("amixer set Master toggle")),
+    Key([], "XF86AudioMute", lazy.spawn("bash -c \"amixer set Master toggle; dunstify -t 800 -u low -r 1 Volume $(amixer get Master|tail -1|awk -F'[][]' '{print $4}')\"")),
     Key(
         [],
         "XF86MonBrightnessDown",
         lazy.spawn(
-            'bash -c "xbacklight -dec 5; dunstify -t 400 -u low -r 1 Brightness $(xbacklight -get)"'
+            'bash -c "xbacklight -dec 5; dunstify -t 800 -u low -r 2 Brightness $(xbacklight -get)"'
         ),
     ),
     Key(
         [],
         "XF86MonBrightnessUp",
         lazy.spawn(
-            'bash -c "xbacklight -inc 5; dunstify -t 400 -u low -r 1 Brightness $(xbacklight -get)"'
+            'bash -c "xbacklight -inc 5; dunstify -t 800 -u low -r 2 Brightness $(xbacklight -get)"'
         ),
     ),
     # screenshot
@@ -97,10 +99,12 @@ keys = [
     #    Key(['control', 'shift'], 'space', lazy.spawn('dunstctl close-all')),
     #    Key(['control'], 'grave', lazy.spawn('dunstctl history-pop')),
     #    Key([], 'XF86UWB', lazy.spawn('sudo rfkill toggle wlan')),
+    Key([M], "p", lazy.spawn("betterlockscreen -l dim")),
 ]
 
 keys.append(Key([], "F10", lazy.group["scratch"].dropdown_toggle("term")))
 keys.append(Key([], "F1", lazy.group["scratch"].dropdown_toggle("htop")))
+keys.append(Key([A], "F7", lazy.group["scratch"].dropdown_toggle("my-running-memo")))
 
 # Drag floating layouts.
 mouse = [
@@ -113,3 +117,4 @@ mouse = [
     Drag([M], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()),
     Click([M], "Button2", lazy.window.bring_to_front()),
 ]
+

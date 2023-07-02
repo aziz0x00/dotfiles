@@ -1,5 +1,5 @@
 alias vi=nvim
-alias 0vi='nvim -u NONE --cmd "set noswapfile noundofile"'
+alias 0vi='nvim -i NONE --noplugin'
 alias ls=exa
 alias l='ls -la'
 alias yay='yay --color=auto'
@@ -18,5 +18,5 @@ alias cp='rsync -ah --inplace --progress'
 alias pwninit='pwninit --template-path ~/.config/pwninit-template.py --template-bin-name e'
 #alias curl='curl -i --path-as-is' # not working with -q
 function curl
-    /bin/curl $argv -i --path-as-is
+    /bin/curl $argv --path-as-is
 end

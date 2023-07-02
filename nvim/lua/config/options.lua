@@ -13,7 +13,6 @@ vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
-
 vim.opt.smartindent = true
 
 vim.opt.swapfile = false
@@ -22,6 +21,7 @@ vim.opt.undofile = true
 
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
+vim.opt.inccommand = 'split'
 
 vim.opt.termguicolors = true
 
@@ -34,3 +34,5 @@ vim.o.completeopt = 'menuone,noselect'
 vim.opt.updatetime = 50
 
 vim.opt.title = true
+
+vim.opt.mousemodel = 'extend'

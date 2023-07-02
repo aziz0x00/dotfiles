@@ -19,6 +19,7 @@ require("lazy").setup({
     { "tpope/vim-sleuth" },
     {
         "j-hui/fidget.nvim",
+        tag = "legacy",
         opts = {
             text = { done = "" },
             window = { blend = 0 },
@@ -38,9 +39,7 @@ require("lazy").setup({
     },
     {
         "lukas-reineke/indent-blankline.nvim",
-        opts = {
-            show_current_context = true,
-        },
+        opts = { show_current_context = true },
     },
     { "windwp/nvim-autopairs", event = "InsertEnter", opts = {} },
     {
@@ -48,38 +47,30 @@ require("lazy").setup({
         lazy = true,
         keys = { { "<leader>u", vim.cmd.UndotreeToggle } },
         config = function()
-            vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
+            vim.keymap.set("n", "<leader>u", function()
+                vim.cmd.UndotreeToggle()
+                vim.cmd.UndotreeFocus()
+            end)
         end,
     },
-
     {
         "monaqa/dial.nvim",
-        keys = { "<C-a>", { "<C-x>", mode = "n" } },
+        keys = { "<C-a>", "<C-x>" },
     },
+    { "tpope/vim-fugitive",      keys = { { "<leader>g", "<cmd>Git<CR>" } } },
+    { "lewis6991/gitsigns.nvim", opts = {} },
+    { "lervag/vimtex",           ft = "tex" },
 
-    { "RRethy/vim-illuminate" },
+    -- { "RRethy/vim-illuminate" },
 
     { import = "plugins.modules" },
 }, {
-    -- defaults = {
-    --     lazy = false,
-    --     version = nil,
-    -- },
-    install = {
-        missing = true,
-    },
-    checker = {
-        enabled = true,
-        notify = false,
-    },
-    change_detection = {
-        enabled = true,
-        notify = false,
-    },
+    checker = { notify = false },
+    change_detection = { notify = false },
     performance = {
         rtp = {
-            -- disable some rtp plugins
             disabled_plugins = {
+                "netrwPlugin",
                 "tohtml",
                 "tutor",
             },

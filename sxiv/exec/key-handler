@@ -5,7 +5,7 @@ case $1 in
 
     y) # copy all selected image paths to clipboard
         # normalize image paths to absolue paths
-        sed "s@^\\/@$(pwd)@" | xclip -sel c
+        sed "s@^./@@;s@^[^/]@$(pwd)/\0@" | xclip -sel c
         ;;
 
     Y) # copy image to clipboard

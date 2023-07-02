@@ -1,8 +1,10 @@
-#!/bin/env bash
+#!/bin/bash
 
 while true; do
 
-    selected=$(find * desk/*  -maxdepth 0 -type d ! -name .\* | fzf)
+    echo -ne "\e[5 q" # keep beam cursor
+
+    selected=$(find * desk/* -maxdepth 0 -type d ! -name .\* | fzf --layout=reverse)
 
     if [[ -z "$selected" ]]; then
         break
@@ -18,7 +20,5 @@ while true; do
 
     selected_name=$(basename "$selected" | tr . _ | tr '-' _)
 
-
-    # I symblinked desk_history to fish_history in ~/.local/share/fish/
     tmux new-session -As $selected_name -c $selected -e fish_history=$selected_name
 done

@@ -11,6 +11,8 @@ settings:
       normal:
         <Ctrl+q>: null
         d: null
+  colors.statusbar.private.bg:
+    global: '#333333'
   colors.webpage.darkmode.enabled:
     global: false
   content.blocking.enabled:
@@ -29,12 +31,20 @@ settings:
     https://mail.proton.me: true
   content.proxy:
     global: system
+  content.tls.certificate_errors:
+    global: ask
   downloads.location.directory:
     global: null
   fonts.default_family:
     global: null
   fonts.default_size:
-    global: 9pt
+    global: 12pt
+  fonts.web.size.default:
+    global: 20
+  fonts.web.size.minimum:
+    global: 12
+  qt.highdpi:
+    global: false
   tabs.position:
     global: top
   url.searchengines:

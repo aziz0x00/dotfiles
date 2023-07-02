@@ -16,7 +16,7 @@ floating_layout = layout.Floating(
         Match(wm_class="sxiv"),
         Match(wm_class="Zathura"),
     ],
-    border_focus=color[2],
+    border_focus=color[4],
     border_normal=color[8],
 )
 auto_fullscreen = True
