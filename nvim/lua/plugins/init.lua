@@ -59,7 +59,7 @@ require("lazy").setup({
     },
     { "tpope/vim-fugitive",      keys = { { "<leader>g", "<cmd>Git<CR>" } } },
     { "lewis6991/gitsigns.nvim", opts = {} },
-    { "lervag/vimtex",           ft = "tex" },
+    -- { "lervag/vimtex",           ft = "tex" },
 
     -- { "RRethy/vim-illuminate" },
 
@@ -70,7 +70,7 @@ require("lazy").setup({
     performance = {
         rtp = {
             disabled_plugins = {
-                "netrwPlugin",
+                -- "netrwPlugin",
                 "tohtml",
                 "tutor",
             },

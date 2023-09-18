@@ -11,8 +11,9 @@ return {
                 cmp_itemkind_reverse = false, -- reverse item kind highlights in cmp menu
 
                 -- toggle theme style ---
-                toggle_style_key = nil,                                                              -- keybind to toggle theme style. Leave it nil to disable it, or set it to a string, for example "<leader>ts"
-                toggle_style_list = { "dark", "darker", "cool", "deep", "warm", "warmer", "light" }, -- List of styles to toggle between
+                toggle_style_key = nil, -- keybind to toggle theme style. Leave it nil to disable it, or set it to a string, for example "<leader>ts"
+                -- List of styles to toggle between
+                toggle_style_list = { "dark", "darker", "cool", "deep", "warm", "warmer", "light" },
 
                 -- Change code style ---
                 -- Options are italic, bold, underline, none
@@ -31,7 +32,7 @@ return {
                 },
 
                 -- Custom Highlights --
-                colors = {},     -- Override default colors
+                colors = {}, -- Override default colors
                 -- highlights = {
                 --     FloatBorder = {bg = "none"},
                 --     FloatNormal = {bg = "none"}

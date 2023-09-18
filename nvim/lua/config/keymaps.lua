@@ -32,7 +32,8 @@ vim.keymap.set("n", "<C-j>", "<C-w>j")
 vim.keymap.set("n", "<C-k>", "<C-w>k")
 vim.keymap.set("n", "<C-l>", "<C-w>l")
 
--- use jj to quit, trying this out..
+-- use jj to quit, very handy
 vim.keymap.set('i', 'jj', '<ESC>')
 
 vim.keymap.set("n", '<leader>t', "<cmd>sp term://fish<CR>")
+

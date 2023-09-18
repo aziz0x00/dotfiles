@@ -1,0 +1,85 @@
+{
+    "layer": "top", // Waybar at top layer
+    "position": "top", // Waybar position (top|bottom|left|right)
+    "spacing": 4, // Gaps between modules (4px)
+    // Choose the order of the modules
+    "modules-left": ["clock", "wlr/workspaces"],
+    "modules-center": ["hyprland/window"],
+    "modules-right": ["network", "pulseaudio", "backlight", "battery"],
+    // Modules configuration
+    "wlr/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "on-click": "activate",
+        // "all-outputs": false,
+        // "format": "{name}: {icon}",
+        "format-icons": {
+            "1": "",
+            "2": "󰖟",
+            "3": "",
+            "4": "󰀻",
+            "5": "",
+            "urgent": "",
+            "focused": "",
+            "default": ""
+        }
+    },
+    "hyprland/window": {
+        "max-length": 50,
+        "separate-outputs": true
+    },
+
+    "clock": {
+        "format": "{:󱦟  %a, %b %d - %R }",
+        "calendar": {
+            "mode": "month",
+            "on-scroll": 1,
+            "format": {
+                "today": "<b><u>{}</u></b>"
+            }
+        },
+        "tooltip-format": "<tt><small>{calendar}</small></tt>"
+    },
+
+    "backlight": {
+        "device": "intel_backlight",
+        "scroll-step": 0,
+        "tooltip": false,
+        "format": "{icon} {percent}%",
+        "format-icons": ["", "", ""]
+    },
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 14
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󱟢"]
+    },
+    "network": {
+        "format-wifi": "{icon} {essid}",
+        "format-ethernet": "{ipaddr}/{cidr} 󰈀",
+        "tooltip-format": "{ifname} via {gwaddr} 󰌗",
+        "format-linked": "{ifname} (No IP) 󰌚",
+        "format-disconnected": "",
+        "format-alt": "{bandwidthUpBytes}    {bandwidthDownBytes}  ",
+        "format-icons": ["󰤯", "󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+        "interval": 1
+    },
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "scroll-step": 0,
+        "tooltip": false,
+        "format-muted": "󰖁",
+        "on-click": "pamixer -t",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "default": ["", "", ""]
+        }
+    }
+}

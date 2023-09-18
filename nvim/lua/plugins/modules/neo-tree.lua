@@ -1,5 +1,6 @@
 return {
     "nvim-neo-tree/neo-tree.nvim",
+    enabled = "false",
     dependencies = {
         "nvim-lua/plenary.nvim",
         "nvim-tree/nvim-web-devicons",
@@ -16,7 +17,7 @@ return {
 
         require("neo-tree").setup({
             enable_git_status = false,
-            window = { width = 35 },
+            window = { width = 28 },
             filesystem = {
                 group_empty_dirs = true,                -- when true, empty folders will be grouped together
                 hijack_netrw_behavior = "open_current", -- "open_default", -- netrw disabled, opening a directory opens neo-tree
