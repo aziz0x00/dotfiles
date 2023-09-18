@@ -29,3 +29,13 @@ autocmd("BufReadPost", {
 autocmd("BufEnter", {
     command = [[set formatoptions-=cro]],
 })
+
+autocmd("FileType", {
+    callback = function()
+        if vim.bo.filetype == "python" then
+            vim.keymap.set("n", "<leader>r", ":!python % <CR>")
+        elseif vim.bo.filetype == "go" then
+            vim.keymap.set("n", "<leader>r", ":!go run % <CR>")
+        end
+    end,
+})

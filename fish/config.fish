@@ -5,7 +5,7 @@ if status is-login
     set -xg BROWSER qutebrowser
     set -xg EDITOR nvim
     set -xg PAGER less
-    set -xg GOATH ~/.local/go
+    set -xg GOPATH ~/.local/go
 
     set -xg PATH ~/.local/scripts/ ~/.local/bin ~/.local/flutter/bin $PATH "$GOPATH/bin" ~/.local/share/gem/ruby/*/bin
     set -xg XDG_CONFIG_HOME ~/.config/
@@ -15,7 +15,10 @@ if status is-login
 
     # launch X server on when logged on tty1, or tmux when logged elsewhere
     test (tty) = '/dev/tty1'
-    and exec startx
+    and begin
+        source $__fish_config_dir/interactive/env.fish
+        exec Hyprland
+    end
     or exec tmux new -s (string split / (tty))[3]
 end
 
@@ -26,4 +29,7 @@ if status is-interactive
     bind \cr redo
 
     source $__fish_config_dir/interactive/main.fish
+    zoxide init fish | source
+    set --export BUN_INSTALL "$HOME/.bun"
+    set --export PATH $BUN_INSTALL/bin $PATH
 end

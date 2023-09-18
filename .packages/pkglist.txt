@@ -240,3 +240,5 @@ zathura-djvu
 zathura-pdf-mupdf
 zbar
 zip
+hyprland
+waybar-hyprland

@@ -1,0 +1,110 @@
+@define-color base00 #181818;
+@define-color base01 #282c34;
+@define-color base02 #3b3e47;
+@define-color base03 #585858;
+@define-color base04 #b8b8b8;
+@define-color base05 #d8d8d8;
+@define-color base06 #e8e8e8;
+@define-color base07 #f8f8f8;
+@define-color base08 #ab4642;
+@define-color base09 #dc9656;
+@define-color base0A #f7ca88;
+@define-color base0B #a1b56c;
+@define-color base0C #86c1b9;
+@define-color base0D #7cafc2;
+@define-color base0E #ba8baf;
+@define-color base0F #a16946;
+
+* {
+    transition: none;
+    box-shadow: none;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#waybar {
+    /* font-family: 'Source Code Pro', sans-serif; */
+    font-weight: 400;
+    color: @base04;
+    /* background-color: @base01; */
+    background: rgba(43, 46, 55, 0.97);
+    border-bottom: 1px solid @base02;
+}
+
+#workspaces {
+    margin: 0 4px;
+}
+
+#workspaces button {
+    margin: 4px 0;
+    padding: 0 4px;
+    color: @base05;
+}
+
+
+#workspaces button.active {
+    border-radius: 4px;
+    background-color: @base02;
+}
+
+#workspaces button.urgent {
+    color: rgba(238, 46, 36, 1);
+}
+
+#workspaces button:hover {
+    background: rgba(59, 62, 71, .5);
+    border-color: @base02;
+    font-weight: normal;
+}
+
+#mode,
+#battery,
+#network,
+#pulseaudio,
+#backlight,
+#clock,
+#temperature {
+    margin: 4px 2px;
+    padding: 0 6px;
+    background-color: @base02;
+    border-radius: 4px;
+    min-width: 20px;
+}
+
+#clock {
+    margin-left: 0px;
+    margin-right: 4px;
+    background-color: transparent;
+}
+
+#window {
+    font-size: 1em;
+    font-weight: 400;
+    font-family: sans-serif;
+}
+
+#battery.critical {
+    color: red;
+}
+
+#battery.charging {
+    color: @base0C;
+}
+
+#battery.full {
+    background-color: @base0C;
+    color: @base03;
+}
+
+#clock {
+    font-weight: 500;
+}
+
+tooltip {
+    background: rgba(59, 62, 71, .9);
+}
+
+tooltip * {
+    color: @base06;
+}
+

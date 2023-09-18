@@ -1,4 +1,4 @@
-alias vi=nvim
+abbr vi nvim
 alias 0vi='nvim -i NONE --noplugin'
 alias ls=exa
 alias l='ls -la'

@@ -1,0 +1,4 @@
+include = /home/aziz/.config/tofi/config
+
+require-match = false
+prompt-text = "> "

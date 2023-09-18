@@ -89,7 +89,7 @@ return {
             --     "pyright",
             -- })
 
-            lsp.on_attach(function(_, bufnr)
+            lsp.on_attach(function(client, bufnr)
                 local opts = { buffer = bufnr }
                 lsp.default_keymaps(opts)
 
@@ -104,11 +104,73 @@ return {
                 vim.keymap.set("n", "<leader>f", function()
                     vim.lsp.buf.format()
                 end, opts)
+
+                vim.keymap.set("n", "<leader>ca", function()
+                    vim.lsp.buf.code_action()
+                end, opts)
+
+                -- if client.server_capabilities.documentHighlightProvider then
+                --     local gid = vim.api.nvim_create_augroup("lsp_document_highlight", { clear = true })
+                --     vim.api.nvim_create_autocmd("CursorHold", {
+                --         group = gid,
+                --         buffer = bufnr,
+                --         callback = function()
+                --             vim.lsp.buf.document_highlight()
+                --         end,
+                --     })
+                --     vim.api.nvim_create_autocmd("CursorHoldI", {
+                --         group = gid,
+                --         buffer = bufnr,
+                --         callback = function()
+                --             vim.lsp.buf.document_highlight()
+                --         end,
+                --     })
+                --     vim.api.nvim_create_autocmd("CursorMoved", {
+                --         group = gid,
+                --         buffer = bufnr,
+                --         callback = function()
+                --             vim.lsp.buf.clear_references()
+                --         end,
+                --     })
+                -- end
             end)
 
             -- (Optional) Configure lua language server for neovim
             require("lspconfig").lua_ls.setup(lsp.nvim_lua_ls())
 
+            require("lspconfig").texlab.setup({
+                settings = {
+                    texlab = {
+                        forwardSearch = {
+                            executable = "zathura",
+                            args = { "--synctex-forward", "%l:1:%f", "%p" },
+                        },
+                        auxDirectory = ".build",
+                        bibtexFormatter = "texlab",
+                        build = {
+                            args = { "%f", "--synctex", "--keep-logs", "--keep-intermediates", "--outdir", ".build" },
+                            executable = "tectonic",
+                            forwardSearchAfer = true,
+                            onSave = true,
+                        },
+                    },
+                },
+            })
+            -- require("lspconfig").intelephense.setup({
+            --     intelephense = { environment = { documentRoot = "." } },
+            -- })
+
+            --             {
+            --   "texlab.build.executable": "tectonic",
+            --   "texlab.build.args": [
+            --     "-X",
+            --     "compile",
+            --     "%f",
+            --     "--synctex",
+            --     "--keep-logs",
+            --     "--keep-intermediates"
+            --   ]
+            -- }
             lsp.setup()
         end,
     },
@@ -125,6 +187,7 @@ return {
                     null_ls.builtins.formatting.stylua,
                     null_ls.builtins.formatting.prettier.with({
                         timeout = -1,
+                        extra_args = { "--tab-width=4" },
                     }),
                     null_ls.builtins.formatting.black.with({ extra_args = { "--fast" } }),
                     null_ls.builtins.formatting.shfmt.with({ extra_args = { "--indent=4" } }),

@@ -3,6 +3,11 @@ return {
     lazy = false,
     event = { "BufReadPost", "BufNewFile" },
     config = function()
+        -- local custom_onedark = require("lualine.themes.onedark")
+        -- custom_onedark.inactive.c.bg = "#3b3f4c"
+        -- custom_onedark.normal.c.bg = "#3b3f4c"
+        -- custom_onedark.inactive.c.fg = "#828997"
+        -- custom_onedark.normal.c.fg = "#abb2bf"
         require("lualine").setup({
             options = {
                 theme = "onedark",

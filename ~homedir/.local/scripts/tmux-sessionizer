@@ -1,0 +1,26 @@
+#!/bin/bash
+
+echo -ne "\e[5 q" # keep beam cursor
+
+cd
+selected=$(find * desk/* -maxdepth 0 -type d ! -name .\* | fzf --layout=reverse)
+
+if [[ -z "$selected" ]]; then
+    exit
+fi
+
+if [[ ! -d "$selected" ]]; then
+    mkdir -p "$selected"
+    if [[ $? != 0 ]]; then
+        echo "Can't create the directory"
+        exit 1
+    fi
+fi
+
+selected_name=$(basename "$selected" | tr . _ | tr '-' _)
+
+tmux new-session -ds $selected_name -c $selected -e fish_history=$selected_name
+
+[[ -z $TMUX ]] &&
+    exec tmux attach -t$selected_name ||
+    exec tmux switch-client -t$selected_name
