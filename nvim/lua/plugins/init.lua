@@ -28,7 +28,7 @@ require("lazy").setup({
     {
         "norcalli/nvim-colorizer.lua",
         lazy = true,
-        keys = { { "<leader>c", "<cmd>ColorizerToggle<CR>" } },
+        keys = { { "<leader>c", "<cmd>ColorizerToggle<CR>", mode = "n" } },
         opts = {},
     },
     {

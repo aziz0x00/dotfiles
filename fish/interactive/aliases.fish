@@ -7,6 +7,7 @@ alias grep='grep --color=auto'
 alias cp='cp -iv'
 alias mv='mv -iv'
 alias py=python
+alias ipy=ipython
 alias L=less
 alias df='grc df -hT'
 alias cl='xclip -o'

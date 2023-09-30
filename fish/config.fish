@@ -19,7 +19,7 @@ if status is-login
         source $__fish_config_dir/interactive/env.fish
         exec Hyprland
     end
-    or exec tmux new -s (string split / (tty))[3]
+    or exec tmux new -As (string split / (tty))[3]
 end
 
 if status is-interactive

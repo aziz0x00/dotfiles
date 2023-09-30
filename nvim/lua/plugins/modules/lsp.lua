@@ -105,6 +105,10 @@ return {
                     vim.lsp.buf.format()
                 end, opts)
 
+                vim.keymap.set("n", "<leader>r", function()
+                    vim.lsp.buf.rename()
+                end, opts)
+
                 vim.keymap.set("n", "<leader>ca", function()
                     vim.lsp.buf.code_action()
                 end, opts)

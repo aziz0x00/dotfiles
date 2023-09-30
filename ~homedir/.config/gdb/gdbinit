@@ -1,0 +1,4 @@
+set debuginfod enabled on
+# source ~/.local/pwndbg/gdbinit.py
+source /usr/share/pwndbg/gdbinit.py
+# source /usr/share/gef/gef.py
