@@ -1,5 +1,4 @@
 [global]
-    # this conf is so ugly now, should be made better
     ### Display ###
 
     # Which monitor should the notifications be displayed on.

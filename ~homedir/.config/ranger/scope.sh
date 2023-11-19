@@ -115,7 +115,7 @@ handle_extension() {
             mediainfo "${FILE_PATH}" && exit 5
             exiftool "${FILE_PATH}" && exit 5
             ;; # Continue with next handler on failure
-	
+
     md)
         mdcat "${FILE_PATH}" && exit 5
 	    ;;
@@ -318,10 +318,14 @@ handle_mime() {
             mediainfo "${FILE_PATH}" && exit 5
             exiftool "${FILE_PATH}" && exit 5
             exit 1;;
-	
+
 	application/json)
             jq --color-output . "${FILE_PATH}" && exit 5
 	    ;;
+
+        application/vnd.sqlite3)
+            sqlite3 "${FILE_PATH}" .dump && exit 5
+            ;;
     esac
 }
 

@@ -7,7 +7,7 @@ if status is-login
     set -xg PAGER less
     set -xg GOPATH ~/.local/go
 
-    set -xg PATH ~/.local/scripts/ ~/.local/bin ~/.local/flutter/bin $PATH "$GOPATH/bin" ~/.local/share/gem/ruby/*/bin
+    set -xg PATH ~/.local/scripts/ ~/.local/bin/ $PATH "$GOPATH/bin/" ~/.local/share/gem/ruby/*/bin/
     set -xg XDG_CONFIG_HOME ~/.config/
     set -xg XDG_CACHE_HOME ~/.cache/
     set -xg XDG_STATE_HOME ~/.local/state/
@@ -31,5 +31,5 @@ if status is-interactive
     source $__fish_config_dir/interactive/main.fish
     zoxide init fish | source
     set --export BUN_INSTALL "$HOME/.bun"
-    set --export PATH $BUN_INSTALL/bin $PATH
+    set --export PATH $PATH ~/.local/flutter/bin/ $BUN_INSTALL/bin/
 end

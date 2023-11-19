@@ -39,7 +39,10 @@ require("lazy").setup({
     },
     {
         "lukas-reineke/indent-blankline.nvim",
+        version = "2.x",
         opts = { show_current_context = true },
+        -- main = "ibl",
+        -- opts = { scope = { enabled = true } },
     },
     { "windwp/nvim-autopairs", event = "InsertEnter", opts = {} },
     {
@@ -57,8 +60,10 @@ require("lazy").setup({
         "monaqa/dial.nvim",
         keys = { "<C-a>", "<C-x>" },
     },
-    { "tpope/vim-fugitive",      keys = { { "<leader>g", "<cmd>Git<CR>" } } },
+    { "tpope/vim-fugitive", keys = { { "<leader>g", "<cmd>Git<CR>" } } },
     { "lewis6991/gitsigns.nvim", opts = {} },
+
+
     -- { "lervag/vimtex",           ft = "tex" },
 
     -- { "RRethy/vim-illuminate" },

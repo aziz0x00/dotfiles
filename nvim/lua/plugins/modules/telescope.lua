@@ -1,7 +1,6 @@
 return {
     "nvim-telescope/telescope.nvim",
-    tag = "0.1.1",
-    -- or                              , branch = '0.1.1',
+    branch = '0.1.x',
     dependencies = { "nvim-lua/plenary.nvim" },
     keys = { "<leader>?", "<leader>pg", "<C-p>", "gr" },
 
@@ -18,5 +17,13 @@ return {
             builtin.oldfiles({ only_cwd = true })
         end)
         vim.keymap.set("n", "<leader>;", builtin.resume)
+
+        require("telescope").setup({
+            defaults = {
+                file_ignore_patterns = {
+                    "node_modules",
+                },
+            },
+        })
     end,
 }
