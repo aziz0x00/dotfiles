@@ -2,49 +2,78 @@ return {
     "nvim-treesitter/nvim-treesitter",
     version = false, -- last release is way too old and doesn't work on Windows
     build = ":TSUpdate",
-    lazy = false,
-    event = { "BufReadPost", "BufNewFile" },
+    lazy = vim.fn.argc(-1) == 0,
+    -- event = { "BufReadPost", "BufNewFile" },
+    cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
+
     dependencies = {
         "nvim-treesitter/nvim-treesitter-context",
         "nvim-treesitter/nvim-treesitter-textobjects",
     },
-    config = function()
-        require("nvim-treesitter.configs").setup({
-            -- A list of parser names, or "all"
-            ensure_installed = { "javascript", "typescript", "c", "lua", "python", "php", "html", "scss" },
-
-            -- Install parsers synchronously (only applied to `ensure_installed`)
-            sync_install = false,
-
-            -- Automatically install missing parsers when entering buffer
-            -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
-            auto_install = true,
-
-            highlight = {
-                -- `false` will disable the whole extension
-                enable = true,
-
-                -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-                -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-                -- Using this option may slow down your editor, and you may see some duplicate highlights.
-                -- Instead of true it can also be a list of languages
-                additional_vim_regex_highlighting = false,
+    opts = {
+        highlight = { enable = true },
+        indent = { enable = true },
+        ensure_installed = {
+            "bash",
+            "c",
+            "diff",
+            "html",
+            "php",
+            "javascript",
+            "jsdoc",
+            "json",
+            "jsonc",
+            "lua",
+            "luadoc",
+            "luap",
+            "markdown",
+            "markdown_inline",
+            "python",
+            "query",
+            "regex",
+            "toml",
+            "tsx",
+            "typescript",
+            "vim",
+            "vimdoc",
+            "xml",
+            "yaml",
+        },
+        incremental_selection = {
+            enable = true,
+            keymaps = {
+                init_selection = "<c-s>",
+                node_incremental = "<c-s>",
+                scope_incremental = "<c-x>",
+                node_decremental = "<M-s>",
             },
-
-            indent = {
+        },
+        textobjects = {
+            move = {
                 enable = true,
-                disable = { "python", "go" },
+                goto_next_start = { ["]f"] = "@function.outer", ["]c"] = "@class.outer" },
+                goto_next_end = { ["]F"] = "@function.outer", ["]C"] = "@class.outer" },
+                goto_previous_start = { ["[f"] = "@function.outer", ["[c"] = "@class.outer" },
+                goto_previous_end = { ["[F"] = "@function.outer", ["[C"] = "@class.outer" },
             },
-
-            incremental_selection = {
-                enable = true,
-                keymaps = {
-                    init_selection = "<c-s>",
-                    node_incremental = "<c-s>",
-                    scope_incremental = "<c-x>",
-                    node_decremental = "<M-s>",
-                },
-            },
-        })
+        },
+    },
+    ---@param opts TSConfig
+    config = function(_, opts)
+        if type(opts.ensure_installed) == "table" then
+            ---@type table<string, boolean>
+            local added = {}
+            opts.ensure_installed = vim.tbl_filter(function(lang)
+                if added[lang] then
+                    return false
+                end
+                added[lang] = true
+                return true
+            end, opts.ensure_installed)
+        end
+        require("nvim-treesitter.configs").setup(opts)
+        vim.schedule(function()
+            require("lazy").load({ plugins = { "nvim-treesitter-textobjects" } })
+        end)
     end,
 }

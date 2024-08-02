@@ -1,0 +1,38 @@
+import = ["~/.config/alacritty/theme.toml"]
+
+[font]
+size = 12
+
+[font.bold]
+style = "Bold"
+
+[font.normal]
+family = "Iosevka Fixed Extended"
+
+[[hints.enabled]]
+command = "none"
+regex = "(ipfs:|ipns:|magnet:|mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)[^\u0000-\u001F\u007F-<>\"\\s{-}\\^⟨⟩`]+"
+
+[hints.enabled.mouse]
+enabled = false
+
+[mouse]
+hide_when_typing = true
+
+[scrolling]
+history = 100000
+
+[shell]
+program = "/bin/fish"
+
+[window]
+dynamic_padding = true
+opacity = 0.96
+
+[window.dimensions]
+columns = 80
+lines = 23
+
+[window.padding]
+x = 1
+y = 2

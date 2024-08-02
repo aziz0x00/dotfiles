@@ -17,7 +17,7 @@ settings:
   colors.statusbar.private.bg:
     global: '#333333'
   colors.webpage.darkmode.enabled:
-    global: true
+    global: false
   colors.webpage.darkmode.policy.images:
     global: never
   content.blocking.enabled:
@@ -25,8 +25,8 @@ settings:
   content.geolocation:
     https://www.google.com: false
   content.headers.user_agent:
-    global: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
-      Chrome/114.0.0.0 Safari/537.36
+    global: Mozilla/5.0 ({os_info}) AppleWebKit/{webkit_version} (KHTML, like Gecko)
+      {qt_key}/{qt_version} {upstream_browser_key}/{upstream_browser_version} Safari/{webkit_version}
   content.javascript.enabled:
     global: true
   content.media.audio_capture:
@@ -34,6 +34,9 @@ settings:
     https://web.whatsapp.com: true
   content.notifications.enabled:
     https://mail.proton.me: true
+    https://www.chess.com: true
+  content.pdfjs:
+    global: false
   content.proxy:
     global: system
   content.tls.certificate_errors:
@@ -43,7 +46,7 @@ settings:
   fonts.default_family:
     global: Iosevka
   fonts.default_size:
-    global: 16px
+    global: 14pt
   fonts.web.size.default:
     global: 16
   fonts.web.size.minimum:
@@ -57,3 +60,5 @@ settings:
       DEFAULT: https://www.google.com/search?q={0}&oq={0}
   url.start_pages:
     global: qute://start
+  window.hide_decoration:
+    global: true

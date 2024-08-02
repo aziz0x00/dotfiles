@@ -16,7 +16,7 @@ alias b64=base64
 alias b64d='b64 -d'
 alias nc='ncat'
 alias cp='rsync -ah --inplace --progress'
-alias pwninit='pwninit --template-path ~/.config/pwninit-template.py --template-bin-name e'
+alias pwninit='pwninit --template-path ~/.config/pwninit-template.py --template-bin-name elf'
 #alias curl='curl -i --path-as-is' # not working with -q
 function curl
     /bin/curl $argv --path-as-is

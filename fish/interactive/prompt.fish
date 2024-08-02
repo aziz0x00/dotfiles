@@ -22,6 +22,11 @@ function fish_prompt
         set arrow_color $ired
     end
 
+    set -l lf ""
+    if set -q LF_LEVEL
+        set lf "(lf)"
+    end
+
     set -l arrow "$arrow_color λ"
     if fish_is_root_user
         set arrow "$arrow_color #"
@@ -29,6 +34,6 @@ function fish_prompt
 
     set -l cwd $cyan(basename (prompt_pwd))$normal
 
-    echo -n -s ' '$cwd (fish_git_prompt) $arrow ' ' $normal
+    echo -n -s $lf' '$cwd (fish_git_prompt) $arrow ' ' $normal
 end
 

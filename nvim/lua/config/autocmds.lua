@@ -8,10 +8,10 @@ autocmd("TextYankPost", {
 })
 
 -- trim spaces in eol
-autocmd("BufWritePre", {
-    pattern = "*",
-    command = [[%s/\s\+$//e]],
-})
+-- autocmd("BufWritePre", {
+--     pattern = "*",
+--     command = [[%s/\s\+$//e]],
+-- })
 
 -- get cursor back where it's been after buffer closes
 -- thanks to https://github.com/adibhanna/nvim
@@ -33,9 +33,9 @@ autocmd("BufEnter", {
 autocmd("FileType", {
     callback = function()
         if vim.bo.filetype == "python" then
-            vim.keymap.set("n", "<leader>x", ":!python % <CR>")
+            vim.keymap.set("n", "<leader>X", ":sp term://python % <CR>")
         elseif vim.bo.filetype == "go" then
-            vim.keymap.set("n", "<leader>x", ":!go run % <CR>")
+            vim.keymap.set("n", "<leader>X", ":sp term://go run % <CR>")
         end
     end,
 })

@@ -6,27 +6,33 @@ from pwn import *
 
 context.binary = {bin_name}
 
-libc.address = e.libs[libc.path]
+libc = {bin_name}.libc
+libc.address = {bin_name}.libs[e.libc.path]
+
+context.terminal = ["tmux", "neww", "-n", "pwn-gdb"]
+
+io: tube
 
 
+def conn(connect_remote=False, level="info"):
 
-def conn():
-    if args.LOCAL:
-        r = process({proc_args})
-        if args.DEBUG:
-            gdb.attach(r)
+    if args.REMOTE or connect_remote:
+        io = remote("addr", 1337)
     else:
-        r = remote("addr", 1337)
+        io = process({proc_args}, level=level)  # set to "error" to suppress
+        if args.DEBUG:
+            gdb.attach(io)
 
-    return r
+    return io
 
 
 def main():
-    r = conn()
+    global io
+    io = conn()
 
     # good luck pwning :)
 
-    r.interactive()
+    io.interactive()
 
 
 if __name__ == "__main__":

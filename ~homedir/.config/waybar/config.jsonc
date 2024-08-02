@@ -25,12 +25,13 @@
         }
     },
     "hyprland/window": {
-        "max-length": 50,
+        "max-length": 70,
         "separate-outputs": true
     },
 
     "clock": {
-        "format": "{:󱦟  %a, %b %d - %R }",
+        "format": " {:%a, %b %d 󱦟 %R }",
+        // "format": "{:%a, %b %d  󱦠  %R }",
         "calendar": {
             "mode": "month",
             "on-scroll": 1,
@@ -60,13 +61,13 @@
         "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󱟢"]
     },
     "network": {
-        "format-wifi": "{icon} {essid}",
+        "format-wifi": "{icon}",
         "format-ethernet": "{ipaddr}/{cidr} 󰈀",
         "tooltip-format": "{ifname} via {gwaddr} 󰌗",
         "format-linked": "{ifname} (No IP) 󰌚",
         "format-disconnected": "",
-        "format-alt": "{bandwidthUpBytes}    {bandwidthDownBytes}  ",
-        "format-icons": ["󰤯", "󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+        "format-alt": "{essid} {bandwidthUpBytes}    {bandwidthDownBytes}  ",
+        "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
         "interval": 1
     },
     "pulseaudio": {

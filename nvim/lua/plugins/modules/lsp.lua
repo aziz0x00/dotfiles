@@ -57,8 +57,8 @@ return {
                         behavior = cmp.ConfirmBehavior.Replace,
                         select = true,
                     }),
-                    ["<Tab>"] = cmp_action.luasnip_supertab(),
-                    ["<S-Tab>"] = cmp_action.luasnip_shift_supertab(),
+                    ["<S-Tab>"] = cmp_action.luasnip_supertab(),
+                    -- ["<S-Tab>"] = cmp_action.luasnip_shift_supertab(),
                 }),
             })
         end,
@@ -142,24 +142,28 @@ return {
             -- (Optional) Configure lua language server for neovim
             require("lspconfig").lua_ls.setup(lsp.nvim_lua_ls())
 
-            require("lspconfig").texlab.setup({
-                settings = {
-                    texlab = {
-                        forwardSearch = {
-                            executable = "zathura",
-                            args = { "--synctex-forward", "%l:1:%f", "%p" },
-                        },
-                        auxDirectory = ".build",
-                        bibtexFormatter = "texlab",
-                        build = {
-                            args = { "%f", "--synctex", "--keep-logs", "--keep-intermediates", "--outdir", ".build" },
-                            executable = "tectonic",
-                            forwardSearchAfer = true,
-                            onSave = true,
-                        },
-                    },
-                },
-            })
+            require("lspconfig").tailwindcss.setup({})
+
+            require("lspconfig").typst_lsp.setup({ settings = { exportPdf = "never" } })
+
+            -- require("lspconfig").texlab.setup({
+            --     settings = {
+            --         texlab = {
+            --             forwardSearch = {
+            --                 executable = "zathura",
+            --                 args = { "--synctex-forward", "%l:1:%f", "%p" },
+            --             },
+            --             auxDirectory = ".build",
+            --             bibtexFormatter = "texlab",
+            --             build = {
+            --                 args = { "%f", "--synctex", "--keep-logs", "--keep-intermediates", "--outdir", ".build" },
+            --                 executable = "tectonic",
+            --                 forwardSearchAfer = true,
+            --                 onSave = true,
+            --             },
+            --         },
+            --     },
+            -- })
             -- require("lspconfig").intelephense.setup({
             --     intelephense = { environment = { documentRoot = "." } },
             -- })
@@ -195,6 +199,7 @@ return {
                     }),
                     null_ls.builtins.formatting.black.with({ extra_args = { "--fast" } }),
                     null_ls.builtins.formatting.shfmt.with({ extra_args = { "--indent=4" } }),
+                    -- null_ls.builtins.formatting.prettier
                 },
             })
         end,

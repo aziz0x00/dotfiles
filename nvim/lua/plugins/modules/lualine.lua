@@ -53,6 +53,8 @@ return {
                     {
                         "diagnostics",
                         sources = { "nvim_lsp" },
+                        -- symbols = { error = " ", warn = " ", info = " " },
+
                         symbols = { error = " ", warn = " ", info = " " },
                     },
                 },

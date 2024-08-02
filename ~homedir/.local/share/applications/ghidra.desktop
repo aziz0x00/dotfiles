@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Ghidra
+Exec=/usr/bin/ghidra %U
+Terminal=false
+Type=Application
+Icon=/opt/ghidra/docs/GhidraClass/AdvancedDevelopment/Images/GhidraLogo64.png
+StartupWMClass=ghidra
+Categories=Office;

@@ -3,19 +3,20 @@
 echo -ne "\e[5 q" # keep beam cursor
 
 cd
-selected=$(find * desk/* -maxdepth 0 -type d ! -name .\* | fzf --layout=reverse)
+selected=$(find -L * ctf/* desk/* work/* -maxdepth 0 -type d ! -name .\* | fzf --layout=reverse)
+
 
 if [[ -z "$selected" ]]; then
     exit
 fi
 
-if [[ ! -d "$selected" ]]; then
-    mkdir -p "$selected"
-    if [[ $? != 0 ]]; then
-        echo "Can't create the directory"
-        exit 1
-    fi
-fi
+# if [[ ! -d "$selected" ]]; then
+#     mkdir -p "$selected"
+#     if [[ $? != 0 ]]; then
+#         echo "Can't create the directory"
+#         exit 1
+#     fi
+# fi
 
 selected_name=$(basename "$selected" | tr . _ | tr '-' _)
 

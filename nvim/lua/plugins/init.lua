@@ -60,13 +60,53 @@ require("lazy").setup({
         "monaqa/dial.nvim",
         keys = { "<C-a>", "<C-x>" },
     },
-    { "tpope/vim-fugitive", keys = { { "<leader>g", "<cmd>Git<CR>" } } },
+    { "tpope/vim-fugitive",      keys = { { "<leader>g", "<cmd>Git<CR>" } } },
     { "lewis6991/gitsigns.nvim", opts = {} },
 
+    {
+        "luckasRanarison/tailwind-tools.nvim",
+        dependencies = { "nvim-treesitter/nvim-treesitter" },
+        opts = {
+            ---@type TailwindTools.Option
+            document_color = {
+                enabled = true, -- can be toggled by commands
+                kind = "inline", -- "inline" | "foreground" | "background"
+                inline_symbol = "󰝤 ", -- only used in inline mode
+                debounce = 200, -- in milliseconds, only applied in insert mode
+            },
+            conceal = {
+                enabled = false, -- can be toggled by commands
+                min_length = nil, -- only conceal classes exceeding the provided length
+                symbol = "󱏿", -- only a single character is allowed
+                highlight = { -- extmark highlight options, see :h 'highlight'
+                    fg = "#38BDF8",
+                },
+            },
+            custom_filetypes = {}, -- see the extension section to learn how it works
+        },                         -- your configuration
+    },
 
-    -- { "lervag/vimtex",           ft = "tex" },
+    -- {
+    --     "lervag/vimtex",
+    --     lazy = false, -- we don't want to lazy load VimTeX
+    --     -- tag = "v2.15", -- uncomment to pin to a specific release
+    --     init = function()
+    --         -- VimTeX configuration goes here, e.g.
+    --         vim.g.vimtex_view_method = "zathura"
+    --     end,
+    -- },
 
-    -- { "RRethy/vim-illuminate" },
+    {
+        "RRethy/vim-illuminate",
+        config = function()
+            require("illuminate").configure({
+
+                "lsp",
+                "treesitter",
+                -- 'regex',
+            })
+        end,
+    },
 
     { import = "plugins.modules" },
 }, {
