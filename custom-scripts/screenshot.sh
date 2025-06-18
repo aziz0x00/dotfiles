@@ -12,6 +12,7 @@ if [ $1 = "crop" ]; then
     [ -z "$dim" ] && exit
 
     tmp=$(mktemp)
+    # sleep 1
 
     grim -g "$dim" "$tmp"
 else

@@ -13,7 +13,7 @@ if status is-login
     set -xg XDG_STATE_HOME ~/.local/state/
     set -xg XDG_DATA_HOME ~/.local/share/
 
-    # launch X server on when logged on tty1, or tmux when logged elsewhere
+    # launch X server/Hyprland on when logged on tty1, or tmux when logged elsewhere
     test (tty) = '/dev/tty1'
     and begin
         source $__fish_config_dir/interactive/env.fish

@@ -37,3 +37,6 @@ vim.keymap.set('i', 'jj', '<ESC>')
 
 vim.keymap.set("n", '<leader>t', "<cmd>sp term://fish<CR>")
 
+-- diagnostics
+vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
+vim.keymap.set("n", "]d", vim.diagnostic.goto_next)

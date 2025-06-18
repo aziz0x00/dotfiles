@@ -108,6 +108,20 @@ require("lazy").setup({
         end,
     },
 
+    {
+        "github/copilot.vim",
+        event = "BufEnter",
+    },
+
+    -- {
+    --     "Exafunction/codeium.vim",
+    --     event = "BufEnter",
+    -- },
+
+    -- {
+    --     "nvim-treesitter/nvim-treesitter-textobjects",
+    -- },
+
     { import = "plugins.modules" },
 }, {
     checker = { notify = false },

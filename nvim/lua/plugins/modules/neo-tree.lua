@@ -1,12 +1,11 @@
 return {
     "nvim-neo-tree/neo-tree.nvim",
-    enabled = "false",
     dependencies = {
         "nvim-lua/plenary.nvim",
         "nvim-tree/nvim-web-devicons",
         "MunifTanjim/nui.nvim",
     },
-    event = "VeryLazy",
+    lazy = false,
     keys = {
         { "<leader>v", ":Neotree toggle current reveal_force_cwd<CR>", silent = true },
         { "<leader>e", ":Neotree focus right reveal<CR>",              silent = true },
