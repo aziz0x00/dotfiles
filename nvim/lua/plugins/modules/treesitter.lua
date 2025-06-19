@@ -1,17 +1,15 @@
 return {
     "nvim-treesitter/nvim-treesitter",
-    version = false, -- last release is way too old and doesn't work on Windows
+    branch = "master",
     build = ":TSUpdate",
-    lazy = vim.fn.argc(-1) == 0,
+    lazy = false,
     -- event = { "BufReadPost", "BufNewFile" },
-    cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
-
-    dependencies = {
-        "nvim-treesitter/nvim-treesitter-context",
-        "nvim-treesitter/nvim-treesitter-textobjects",
-    },
+    main = "nvim-treesitter.configs", -- Sets main module to use for opts
     opts = {
-        highlight = { enable = true },
+        highlight = {
+            enable = true,
+            -- additional_vim_regex_highlighting = { 'ruby' },
+        },
         indent = { enable = true },
         auto_install = true,
         ensure_installed = {
@@ -68,22 +66,7 @@ return {
             },
         },
     },
-    ---@param opts TSConfig
-    config = function(_, opts)
-        if type(opts.ensure_installed) == "table" then
-            ---@type table<string, boolean>
-            local added = {}
-            opts.ensure_installed = vim.tbl_filter(function(lang)
-                if added[lang] then
-                    return false
-                end
-                added[lang] = true
-                return true
-            end, opts.ensure_installed)
-        end
-        require("nvim-treesitter.configs").setup(opts)
-        vim.schedule(function()
-            require("lazy").load({ plugins = { "nvim-treesitter-textobjects" } })
-        end)
-    end,
+
+    { "nvim-treesitter/nvim-treesitter-context", opts = {} },
+    { "nvim-treesitter/nvim-treesitter-textobjects" },
 }
