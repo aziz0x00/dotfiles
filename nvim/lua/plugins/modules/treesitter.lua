@@ -3,8 +3,11 @@ return {
     branch = "master",
     build = ":TSUpdate",
     lazy = false,
-    -- event = { "BufReadPost", "BufNewFile" },
     main = "nvim-treesitter.configs", -- Sets main module to use for opts
+    dependencies = {
+        { "nvim-treesitter/nvim-treesitter-context", opts = {} },
+        { "nvim-treesitter/nvim-treesitter-textobjects" },
+    },
     opts = {
         highlight = {
             enable = true,
@@ -55,18 +58,23 @@ return {
             },
             move = {
                 enable = true,
-                goto_next_start = { ["]f"] = "@function.outer", ["]c"] = "@class.outer", ["]a"] = "@parameter.inner" },
+                goto_next_start = {
+                    ["]f"] = "@function.outer",
+                    ["]c"] = "@class.outer",
+                    ["]a"] = "@parameter.inner",
+                },
                 goto_next_end = { ["]F"] = "@function.outer", ["]C"] = "@class.outer", ["]A"] = "@parameter.inner" },
                 goto_previous_start = {
                     ["[f"] = "@function.outer",
                     ["[c"] = "@class.outer",
                     ["[a"] = "@parameter.inner",
                 },
-                goto_previous_end = { ["[F"] = "@function.outer", ["[C"] = "@class.outer", ["[A"] = "@parameter.inner" },
+                goto_previous_end = {
+                    ["[F"] = "@function.outer",
+                    ["[C"] = "@class.outer",
+                    ["[A"] = "@parameter.inner",
+                },
             },
         },
     },
-
-    { "nvim-treesitter/nvim-treesitter-context", opts = {} },
-    { "nvim-treesitter/nvim-treesitter-textobjects" },
 }
