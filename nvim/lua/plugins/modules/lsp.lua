@@ -39,6 +39,12 @@ return {
 
                     -- map("n", "<leader>f", vim.lsp.buf.format)
 
+                    map("n", "K", function()
+                        vim.lsp.buf.hover({
+                            border = "rounded",
+                        })
+                    end)
+
                     map("n", "<leader>r", vim.lsp.buf.rename)
 
                     map("n", "<leader>ca", vim.lsp.buf.code_action)
@@ -101,14 +107,20 @@ return {
                 float = { border = "rounded", source = "if_many" },
                 -- -- update_in_insert = true,
                 -- underline = { severity = vim.diagnostic.severity.ERROR },
-                signs = vim.g.have_nerd_font and {
-                    text = {
-                        [vim.diagnostic.severity.ERROR] = "󰅚 ",
-                        [vim.diagnostic.severity.WARN] = "󰀪 ",
-                        [vim.diagnostic.severity.INFO] = "󰋽 ",
-                        [vim.diagnostic.severity.HINT] = "󰌶 ",
-                    },
-                } or {},
+                signs = vim.g.have_nerd_font
+                        and {
+                            text = {
+                                [vim.diagnostic.severity.ERROR] = "● ",
+                                [vim.diagnostic.severity.WARN] = "● ",
+                                [vim.diagnostic.severity.INFO] = "● ",
+                                [vim.diagnostic.severity.HINT] = "● ",
+                                -- [vim.diagnostic.severity.ERROR] = "󰅚 ",
+                                -- [vim.diagnostic.severity.WARN] = "󰀪 ",
+                                -- [vim.diagnostic.severity.INFO] = "󰋽 ",
+                                -- [vim.diagnostic.severity.HINT] = "󰌶 ",
+                            },
+                        }
+                    or {},
                 virtual_text = {
                     source = "if_many",
                     spacing = 2,
@@ -198,7 +210,7 @@ return {
                         -- by the server configuration above. Useful when disabling
                         -- certain features of an LSP (for example, turning off formatting for ts_ls)
                         server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-                        require("lspconfig")[server_name].setup(server)
+                        vim.lsp.config(server_name, server)
                     end,
                 },
             })
@@ -268,7 +280,8 @@ return {
                 -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
                 --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
 
-                ["<CR>"] = { "select_and_accept", 'fallback' },
+                ["<CR>"] = { "select_and_accept", "fallback" },
+                ["<C-n>"] = { "show", 'select_next'}, -- experim..
                 ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
             },
 
@@ -281,7 +294,9 @@ return {
             completion = {
                 -- By default, you may press `<c-space>` to show the documentation.
                 -- Optionally, set `auto_show = true` to show the documentation after a delay.
-                documentation = { auto_show = false, auto_show_delay_ms = 500 },
+                documentation = { auto_show = true, auto_show_delay_ms = 500, window = { border = "single" } },
+
+                menu = { border = "solid" },
             },
 
             sources = {
@@ -303,7 +318,7 @@ return {
             fuzzy = { implementation = "lua" },
 
             -- Shows a signature help window while you type arguments for a function
-            signature = { enabled = true },
+            signature = { enabled = true, window = { border = "rounded" } },
         },
     },
 
@@ -328,34 +343,11 @@ return {
                 lua = { "stylua" },
                 -- Conform can also run multiple formatters sequentially
                 python = { "isort", "black" },
+                typst = { "typstyle" },
                 --
                 -- You can use 'stop_after_first' to run the first available formatter from the list
                 -- javascript = { "prettierd", "prettier", stop_after_first = true },
             },
         },
     },
-
-    -- -- null-ls
-    -- {
-    --     "nvimtools/none-ls.nvim",
-    --     event = "VeryLazy",
-    --     config = function()
-    --         local null_ls = require("null-ls")
-    --         null_ls.setup({
-    --             sources = {
-    --                 null_ls.builtins.code_actions.gitsigns,
-    --                 null_ls.builtins.formatting.stylua,
-    --                 null_ls.builtins.formatting.prettier.with({
-    --                     timeout = 10,
-    --                     extra_args = { "--tab-width=4" },
-    --                 }),
-    --                 null_ls.builtins.formatting.black.with({ extra_args = { "--fast" } }),
-    --                 null_ls.builtins.formatting.shfmt.with({ extra_args = { "--indent=4" } }),
-    --                 null_ls.builtins.formatting.biome.with({
-    --                     args = { "format", "--stdin-file-path", "$FILENAME", "--indent-style", "space" },
-    --                 }),
-    --             },
-    --         })
-    --     end,
-    -- },
 }

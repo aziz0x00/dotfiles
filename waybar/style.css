@@ -1,6 +1,6 @@
 @define-color base00 #181818;
 @define-color base01 #282c34;
-@define-color base02 #3b3e47;
+@define-color base02 #4b4e57;
 @define-color base03 #585858;
 @define-color base04 #b8b8b8;
 @define-color base05 #d8d8d8;
@@ -18,32 +18,28 @@
 * {
     box-shadow: none;
     font-size: 16px;
-    font-weight: bold;
+    font-weight: 500;
+    /* transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); */
 }
 
 #waybar {
-    /* font-family: 'Source Code Pro', sans-serif; */
     font-weight: 400;
-    color: @base04;
-    /* background-color: @base01; */
-    background: rgba(43, 46, 55, 0.97);
+    color: @base05;
+    background: rgba(43, 46, 55, 0.95);
     border-bottom: 1px solid @base02;
 }
 
-#workspaces {
-    margin: 0 4px;
-}
-
 #workspaces button {
-    margin: 4px 0;
+    margin: 4px 1px;
     padding: 0 4px;
     color: @base04;
     border-radius: 50%;
 }
 
 #workspaces button.active {
-    border-radius: 50%;
-    background-color: @base02;
+    background: rgb(59, 62, 71);
+    border-color: @base02;
+    color: @base05;
 }
 
 #workspaces button.urgent {
@@ -51,7 +47,7 @@
 }
 
 #workspaces button:hover {
-    background: rgba(59, 62, 71, 0.5);
+    background: rgb(59, 62, 71);
     border-color: @base02;
 }
 
@@ -64,11 +60,37 @@
     margin-top: 4px;
     margin-bottom: 4px;
     margin-right: 4px;
-    padding: 0 6px;
-    background-color: @base02;
-    border-radius: 4px;
+    padding: 2px 6px;
+    background: linear-gradient(135deg, rgba(75, 78, 87, 0.6), rgba(75, 78, 87, 0.4));
+    border-radius: 8px;
     min-width: 20px;
-    font-weight: 600;
+    font-weight: 500;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    font-family: 'Iosevka';
+}
+
+#custom-mic_status {
+    padding: 2px 6px;
+    font-family: 'Iosevka';
+    color: lightseagreen;
+    margin-right: 4px;
+    min-width: 20px;
+}
+
+#custom-transcript {
+    font-family: 'Iosevka';
+    color: slategray;
+}
+
+#mode:hover,
+#battery:hover,
+#network:hover,
+#pulseaudio:hover,
+#backlight:hover,
+#temperature:hover {
+    background: linear-gradient(135deg, rgba(75, 78, 87, 0.8), rgba(75, 78, 87, 0.6));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    /* transform: translateY(-1px); */
 }
 
 #clock {
@@ -78,10 +100,19 @@
     font-family: Munro;
     font-size: 1.15em;
     font-weight: 600;
+    color: @base06;
+}
+
+#custom-timeleft {
+    font-family: 'Iosevka';
+    color: @base04;
+    font-size: 1.2em;
 }
 
 #battery.charging {
     color: @base0C;
+    background: linear-gradient(135deg, rgba(134, 193, 185, 0.3), rgba(134, 193, 185, 0.2));
+    border: 1px solid rgba(134, 193, 185, 0.4);
 }
 
 #battery.full {
@@ -102,13 +133,4 @@
     animation-timing-function: steps(12);
     animation-iteration-count: infinite;
     animation-direction: alternate;
-}
-
-tooltip {
-    background: rgba(59, 62, 71, 0.9);
-    font-weight: 200;
-}
-
-tooltip * {
-    color: @base06;
 }

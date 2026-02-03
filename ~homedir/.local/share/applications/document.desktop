@@ -2,4 +2,4 @@
 [Desktop Entry]
 Type=Application
 Name=Document Viewer
-Exec=/bin/zathura %u
+Exec=/bin/zathura --fork %u

@@ -1,0 +1,21 @@
+#!/bin/bash
+#
+## Wrapper script for timer-bin with styled output
+#
+
+# Locate timer-bin relative to this script
+timer_bin=$(dirname "${BASH_SOURCE[0]}")/timer-bin
+
+# Parse arguments with defaults
+duration=${1:-15m}
+title=${2:-Timer}
+shift 2
+rest=$@
+
+# Apply styling to title (bold, amber color)
+title=$(gum style --bold --foreground '#e5c07b' -- "$title")
+
+# Run timer-bin with 24h format and gradient colors
+# Falls back to usage message on failure
+$timer_bin --format 24h --gradient '#E5C07BFF,#E06C75FF' --name "$title" "$duration" $rest ||
+	echo "Usage: timer <duration> [<title> [..timer-bin args]]"

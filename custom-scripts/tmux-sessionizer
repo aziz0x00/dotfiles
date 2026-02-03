@@ -3,7 +3,7 @@
 echo -ne "\e[5 q" # keep beam cursor
 
 cd
-selected=$(find -L * ctf/* desk/* work/* -maxdepth 0 -type d ! -name .\* | fzf --layout=reverse)
+selected=$(find -L * /home/homeathome/codz/myrepos/* ctf/* desk/* desk/projects/* work/* -maxdepth 0 -type d ! -name .\* | fzf --layout=reverse)
 
 
 if [[ -z "$selected" ]]; then
@@ -20,6 +20,7 @@ fi
 
 selected_name=$(basename "$selected" | tr . _ | tr '-' _)
 
+# create session if not existent and silently quit
 tmux new-session -ds $selected_name -c $selected -e fish_history=$selected_name
 
 [[ -z $TMUX ]] &&

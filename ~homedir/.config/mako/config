@@ -1,0 +1,51 @@
+# Mako Configuration - OneDark Theme
+# Place this file at ~/.config/mako/config
+
+# General Settings
+sort=-time
+layer=overlay
+anchor=top-right
+font=Iosevka
+markup=1
+actions=1
+max-visible=5
+
+# Dimensions & Positioning
+width=320
+height=200
+margin=15
+padding=10,10
+border-size=1
+border-radius=12
+
+# Colors (OneDark theme with transparency)
+background-color=#282c34dd
+text-color=#abb2bf
+border-color=#61afef
+progress-color=over #3e4451
+
+# Urgency-specific styling
+[urgency=low]
+border-color=#98c379
+default-timeout=6000
+
+[urgency=normal]
+border-color=#61afef
+default-timeout=20000
+
+[urgency=high]
+border-color=#e06c75
+default-timeout=0
+
+# Group notifications
+group-by=app-name
+
+# Icon settings
+icons=1
+max-icon-size=48
+icon-path=/usr/share/icons/Papirus-Dark
+
+# Behavior
+default-timeout=5000
+ignore-timeout=0
+

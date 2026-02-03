@@ -17,7 +17,7 @@ if status is-login
     test (tty) = '/dev/tty1'
     and begin
         source $__fish_config_dir/interactive/env.fish
-        exec Hyprland
+        exec start-hyprland
     end
     or exec tmux new -As (string split / (tty))[3]
 end

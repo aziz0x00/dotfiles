@@ -1,0 +1,3 @@
+#!/bin/bash
+
+curl -qs "https://ipinfo.io/$1" | jq
