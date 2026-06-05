@@ -1,40 +1,63 @@
 # there's no place like ::1
 
-## Intro
+Personal dotfiles for my Linux setup.
 
-I keep my computer setup here that I use for programming and offsec, so I don't lose it when the hardware is lost and to share it with anyone who might finds it useful
-You can also see _the software stack_ I use in bottom-right of the screenshot
+This repo is mostly a backup and reference for my daily environment: Hyprland,
+Fish, tmux, Neovim, Waybar, and a handful of small scripts for desktop workflow.
 
-## Thanks should be given and gratitude
-I really thank from the bottom of my heart everybody who made these programs I use, they really made the FOSS community, those guys really made computers freedom beautiful for everybody. from the bottom of my heart, thanks guys <3
-now anyone can live with freedom and peace without the lack of aestheticism (graphically and programmatically) and efficiency which are even incredibly much better than the non-FOSS ones in most cases.
+## Stack
 
-## My most favorite programs
-### productivity
-- `qtile` never had to look back at i3, you can check how I organize my configs, any suggestions are super welcome
-- `alacritty` <3 (I wish they add rtl and cmd-output to clipboard)
-- `neovim` you can check my nvim directory to see more
-- `tmux` quick and organized workflow, bam bam bam (theprimeagen voice) everywhere
-- `fish` I think fish is really underrated by many, it should be more used, I believe *it's way much better* than every shell out there
-- `qutebrowser` great browser <3
-### others
-- `lf`
-- `mpv`
-- `pywal`
-- `sxiv`
-- `picom`
-- `zathura`
-- `pwninit`
-and so so much more, thanks alot alot alot for everyone behind them <3.
+- **Desktop:** Hyprland
+- **Bar:** Waybar
+- **Lock/wallpaper:** Hyprlock, Hyprpaper
+- **Shell:** Fish
+- **Terminal workflow:** tmux, Kitty, Ghostty
+- **Editor:** Neovim
+- **Browser:** qutebrowser, Brave
+- **Menus:** rofi, tofi, fzf
+- **Clipboard/screenshot:** cliphist, wl-clipboard, grim, slurp
+- **Other daily tools:** lf, mpv, zathura
 
-## projects that came on the side of builing this
-- separate shell history files switcher (at ./fish/functions/history_sessions_switcher.fish)
-- switch tmux sessions and set history file and working directory depending automatically (at ./~homedir/.local/scripts/tmux-4ever)
-- TODO: a keybinding to edit clipboards in nvim in the scartchpad terminal
+## Workflow Notes
+
+- Fish starts Hyprland automatically from `tty1`; other TTY logins attach to a
+  tmux session.
+- `SUPER+P` opens the app launcher with `rofi`.
+- `SUPER+V` opens clipboard history with `tofi`, decodes the selected `cliphist`
+  entry, and copies it back with `wl-copy`.
+- `SUPER+O` opens a `tofi` picker for screenshots, PDFs, images, and docs, then
+  launches the selected file with `xdg-open`.
+- `Print` starts a region screenshot with `slurp` + `grim`; `Shift+Print`
+  captures the full screen.
+- After taking a screenshot, `tofi` asks whether to copy it to the clipboard,
+  save it under `~/screenshots`, or discard it.
+- `custom-scripts/tmux-sessionizer` picks a project with `fzf`, switches tmux to
+  it, and gives it a matching Fish history file.
+- Hyprland has special workspaces for scratch terminals, [AI](https://github.com/aziz0x00/chat.sh)/dev sessions, htop,
+  and background tasks.
+
+## Layout
+
+- `hypr/` - Hyprland, Hyprpaper, Hypridle, Hyprlock, portal startup
+- `waybar/` - Waybar config, style, and scripts
+- `fish/` - Fish config, prompt, aliases, binds, functions, environment
+- `tmux/` - tmux config
+- `nvim/` - Neovim Lua config
+- `custom-scripts/` - small desktop and shell helpers
+- `etc/` - system-level config snippets
+- `pkglist.txt` - package list from the current machine
+
+## Install
+
+There is no polished installer yet. `install.sh` is still a TODO, so treat this
+repo as configs to inspect and copy or symlink manually.
 
 ## Screenshot
 
-![](./screenshot.png)
+![desktop screenshot](./screenshot.png)
 
-I hope you found something useful here :p
-Selam ✌️
+## Acknowledgments
+> I really thank from the bottom of my heart everybody who made these programs I use, they really made the FOSS community, those guys really made computers freedom beautiful for everybody. from the bottom of my heart, thanks guys <3 now anyone can live with freedom and peace without the lack of aestheticism (graphically and programmatically) and efficiency which are even incredibly much better than the non-FOSS ones in most cases. \
+> —  [Me, Oct 17 2021](https://github.com/aziz0x00/dotfiles/commit/5d3903197afdbffb6537f3caffb745fb6dfa641e)
+
+Selam ✌️.
